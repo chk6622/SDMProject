@@ -6,7 +6,7 @@
 <title>{%block title%}{%endblock%}</title>
 </head>
 <body>
-<style type="text/css">
+	<style type="text/css">
 <!--
 body {
 	margin-left: 0px;
@@ -14,46 +14,61 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-.STYLE1 {font-size: 12px}
-.STYLE3 {font-size: 12px; font-weight: bold; }
+
+.STYLE1 {
+	font-size: 12px
+}
+
+.STYLE3 {
+	font-size: 12px;
+	font-weight: bold;
+}
+
 .STYLE4 {
 	color: #03515d;
 	font-size: 12px;
 }
-.errorlist{
+
+.errorlist {
 	font-size: 12px;
-	color:red
+	color: red
 }
-.helptext{
-	color:red
+
+.helptext {
+	color: red
 }
-.deleteFileName{
-	text-decoration:line-through
+
+.deleteFileName {
+	text-decoration: line-through
 }
-.notify{
+
+.notify {
 	color: red;
 	font-size: 12px;
 }
-.radio{
+
+.radio {
 	font-size: 12px
 }
-.radio ul{
-	list-style:none;
-	margin:0 10px 0 10px;
-	padding:0 0 0 0px;
-	line-height:0px;
-	overflow:visible;
-	
+
+.radio ul {
+	list-style: none;
+	margin: 0 10px 0 10px;
+	padding: 0 0 0 0px;
+	line-height: 0px;
+	overflow: visible;
+
 	/*background:red*/
 }
-.radio ul li{
-	list-style:none;
-	display:inline;
-	float:left;
+
+.radio ul li {
+	list-style: none;
+	display: inline;
+	float: left;
 }
 -->
 </style>
-<script language="javascript">
+	<script language="javascript">
 {%if messages%}
 	{%for message in messages%}
 		{% ifequal message.tags 'error'%}
@@ -65,8 +80,6 @@ body {
 	{%endfor%}
 {%endif%}
 </script>
-{%block saveOrUpdateForm%}
-
-{%endblock%}
+	{%block saveOrUpdateForm%} {%endblock%}
 </body>
 </html>

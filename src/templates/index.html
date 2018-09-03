@@ -19,23 +19,15 @@ function mysubmit()
 }
 </script>
 <body>
-{%if form.errors%}
-	{%for message in form.errors%}
-		
-	{%endfor%}
-{%endif%}
-{%if messages%}
-	{%for message in messages%}
-		{{message}}
-	{%endfor%}
-{%endif%}
-<form method='post' action='' onsubmit='submit()'>
-{%csrf_token%}
-用户名：{{form.username}}{{form.username.errors}}
-密码:{{form.password}}{{form.password.errors}}
-<input type='hidden' name='next' value='{{next|escape}}'/>
-<input type='button' value='登录' value='login' onclick='mysubmit()'/>
-</form>
+	{%if form.errors%} {%for message in form.errors%} {%endfor%} {%endif%}
+	{%if messages%} {%for message in messages%} {{message}} {%endfor%}
+	{%endif%}
+	<form method='post' action='' onsubmit='submit()'>
+		{%csrf_token%} 用户名：{{form.username}}{{form.username.errors}}
+		密码:{{form.password}}{{form.password.errors}} <input type='hidden'
+			name='next' value='{{next|escape}}' /> <input type='button'
+			value='登录' value='login' onclick='mysubmit()' />
+	</form>
 
 </body>
 </html>

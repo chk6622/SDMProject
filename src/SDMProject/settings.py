@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding: utf-8
+# coding: utf-8
 '''
 Created on Sep 2, 2018
 
@@ -34,7 +34,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'SDMProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,21 +76,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SDMProject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sdm_project',
+        'NAME': 'software_development_methods',
         'USER': 'root',
         'PASSWORD':'xhy121230',
         'HOST':'localhost',
         'PORT':'3306'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -111,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -125,29 +121,29 @@ USE_L10N = True
 
 USE_TZ = True
 
-SESSION_SAVE_EVERY_REQUEST=True  #if True then following option active
-#SESSION_COOKIE_AGE=60*30   #session time out second
-SESSION_EXPIRE_AT_BROWSER_CLOSE=True   # if True then session will invalid when browner closed;
+SESSION_SAVE_EVERY_REQUEST = True  # if True then following option active
+# SESSION_COOKIE_AGE=60*30   #session time out second
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # if True then session will invalid when browner closed;
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
-ADMIN_MEDIA_ROOT='/static/admin'
+ADMIN_MEDIA_ROOT = '/static/admin'
 
-STATICFILES_DIRS=(
+STATICFILES_DIRS = (
                   )
 
-LOGIN_URL='/'
+LOGIN_URL = '/'
 
-GLOBAL_DATE_FORMAT='%Y-%m-%d'
+GLOBAL_DATE_FORMAT = '%Y-%m-%d'
 
 LOGGING = {
     'version': 1,
@@ -163,8 +159,8 @@ LOGGING = {
         'default': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR,'logs','appLog.log'),
-            'maxBytes': 1024*1024*10, # 10 MB
+            'filename': os.path.join(BASE_DIR, 'logs', 'appLog.log'),
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 5,
             'formatter':'standard',
         },
@@ -176,20 +172,20 @@ LOGGING = {
         'request_handler': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR,'logs','appLog.log'),  
-            'maxBytes': 1024*1024*10, # 10 MB
+            'filename': os.path.join(BASE_DIR, 'logs', 'appLog.log'),
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 5,
             'formatter':'standard',
         }
     },
     'loggers': {
         'django': {
-            'handlers': ['default','console'],
+            'handlers': ['default', 'console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
             'propagate': False
         },
         'DataServiceManagement.DataServiceView':{
-            'handlers': ['default','console'],
+            'handlers': ['default', 'console'],
             'level': 'DEBUG',
             'propagate': False        
         },

@@ -1,36 +1,38 @@
 #!/usr/bin/env python
-#coding: utf-8
+# coding: utf-8
 '''
 Created on Sep 2, 2018
 
 @author: xingtong
 '''
 import sys
-from django.shortcuts import render_to_response
-from Common.ViewTools import *
-from Common.UploadFileTools import *
-from django.views.decorators.csrf import csrf_protect
-from django.template import RequestContext
-from models import *
-import SDMProject.SDMProject.settings as settings
 import time
-from django.contrib.auth.models import User
+
 from django.contrib import auth
-from django.http.response import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from Common.UploadFileTools import *
+from Common.ViewTools import *
+from models import *
+
 
 
 
 def index(request):
-    return render_to_response('index.html',locals(),context_instance=RequestContext(request))
+    return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+
 
 def loginSuccess(request):
-    return render_to_response('main.html',locals(),context_instance=RequestContext(request))
+    return render_to_response('main.html', locals(), context_instance=RequestContext(request))
+
 
 def changePasswordDone(request):
-    messages.info(request,'Reset password success！')
+    messages.info(request, 'Reset password success！')
     form = PasswordChangeForm(user=request.user)
-    return render_to_response('sys/passwordChange.html',locals(),context_instance=RequestContext(request))
+    return render_to_response('sys/passwordChange.html', locals(), context_instance=RequestContext(request))
 # 
 # 
 # def mylogin(request):
@@ -59,15 +61,4 @@ def changePasswordDone(request):
 # def mylogout(request):
 #     auth.logout(request)
 #     return HttpResponseRedirect('/')
-
-
-
-
-
-
-
-
-
-
-
 

@@ -12,14 +12,23 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-.STYLE1 {font-size: 12px}
-.STYLE3 {font-size: 12px; font-weight: bold; }
+
+.STYLE1 {
+	font-size: 12px
+}
+
+.STYLE3 {
+	font-size: 12px;
+	font-weight: bold;
+}
+
 .STYLE4 {
 	color: #03515d;
 	font-size: 12px;
 }
-.mouseHover{
-	cursor:pointer;
+
+.mouseHover {
+	cursor: pointer;
 }
 -->
 </style>
@@ -85,9 +94,8 @@ for(i=0;i<cs.length;i++){
 
 </head>
 
-<body>
-{%block query_table%}{%endblock%}
-{%block list_table%}{%endblock%}
+<body>{%block query_table%}{%endblock%} {%block
+	list_table%}{%endblock%}
 
 </body>
 </html>
