@@ -9,39 +9,41 @@ from django import forms
 from django import forms
 from django.contrib import admin
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin,GroupAdmin
 from django.contrib.auth.forms import *
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 from django.db import models
 from django.db.models.fields.related import ForeignKey
 from django.forms import ModelForm
 from django.forms.widgets import Widget
 
 # Create your models here.
-user_role = [
-               ('1', u'ProjectLeader'),
-               ('2', u'GeneralStaff'),
-               ('3', u'Researcher'),
-               ]
 
-
-def getChoice(choiceList, hasBlank=False):
-    returnList = []
-    if choiceList and isinstance(choiceList, list):
-        if hasBlank:
-            returnList.append(('', u'-' * 25))
-            returnList.extend(choiceList)
-        else:
-            returnList.extend(choiceList)
-    return returnList
+class Project(models.Model):
+    projectName = models.CharField(max_length=30)
+    projectDescribe=models.TextField()
+    is_active = models.BooleanField(
+        default=True,
+        help_text=(
+            'Designates whether this project should be treated as active. '
+        ),
+    )
+    
+    def __str__(self):
+        return self.projectName
 
 
 class MyProfileForm(UserChangeForm):
-    role = forms.ChoiceField(label=u'Role', help_text=u'', required=True, choices=getChoice(user_role, True), widget=forms.Select)
-
+    project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
+#     def __init__(self, *args, **kwargs):
+#         super(MyProfileForm, self).__init__(*args, **kwargs)
+#         self.fields.get('groups').label = 'Roles'
+#         self.fields.get('groups').help_text = 'The roles this user belongs to. A user will get all permissions granted to each of their roles. Hold down "Control", or "Command" on a Mac, to select more than one.'
+        
 
 class ProfileBase(type):
-
+ 
     def __new__(cls, name, bases, attrs):
         module = attrs.pop('__module__')
         parents = [b for b in bases if isinstance(b, ProfileBase)]
@@ -56,12 +58,13 @@ class ProfileBase(type):
             UserAdmin.fieldsets = formList
             UserAdmin.form = MyProfileForm
         return super(ProfileBase, cls).__new__(cls, name, bases, attrs)
-
-
+ 
+ 
 class Profile(object):
     __metaclass__ = ProfileBase
-
-    
+ 
+     
 class MyProfile(Profile):
-    role = models.CharField(u'Role', choices=user_role, max_length=20, null=True, blank=True)
+    project = models.ForeignKey(Project)
+    
 

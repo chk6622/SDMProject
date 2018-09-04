@@ -33,6 +33,8 @@ def changePasswordDone(request):
     messages.info(request, 'Reset password success！')
     form = PasswordChangeForm(user=request.user)
     return render_to_response('sys/passwordChange.html', locals(), context_instance=RequestContext(request))
+
+
 # 
 # 
 # def mylogin(request):
