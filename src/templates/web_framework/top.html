@@ -38,27 +38,7 @@ body {
 </style>
 <script type="text/javascript">
 
-$(
-		function(){
-			$('#welcome_image').click(function(){
-				navigateTo('/html/welcome.html')
-			}).hover(function(){
-				$(this).addClass('mouseHover')
-			},function(){
-				$(this).removeClass('mouseHover')
-			});
-			$('#logout_image').click(function(){
-				if(confirm('您要退出系统吗？'))
-				{
-					parent.window.location='/logout/'
-				}
-			}).hover(function(){
-				$(this).addClass('mouseHover')
-			},function(){
-				$(this).removeClass('mouseHover')
-			});
-		}
-		);
+
 </script>
 </head>
 
@@ -93,13 +73,13 @@ $(
 														width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
 															<td width="50" height="19"><div align="center">
-																	<img src="/static/images/main_12.gif" width="49"
-																		height="19" id='welcome_image'>
+																	<!--  img src="/static/images/main_12.gif" width="49"
+																		height="19" id='welcome_image'>-->
 																</div></td>
 
 															<td width="50"><div align="center">
-																	<img src="/static/images/main_20.gif" width="48"
-																		height="19" id='logout_image'>
+																	<!-- img src="/static/images/main_20.gif" width="48"
+																		height="19" id='logout_image'> -->
 																</div></td>
 
 															<td>&nbsp;</td>
@@ -107,7 +87,7 @@ $(
 													</table></td>
 												<td width="220" valign="bottom" nowrap="nowrap"><div
 														align="right">
-														<span class="STYLE1"><span class="STYLE2">当前时间：<span
+														<span class="STYLE1"><span class="STYLE2"><span
 																id="time" /> <SCRIPT language=JavaScript>dispdate();</SCRIPT>&nbsp;&nbsp;<SPAN
 																id="lblTime" />
 															<SCRIPT language=JavaScript>updateTime();</SCRIPT></span>
@@ -143,12 +123,12 @@ $(
 							background="/static/images/main_32.gif"><table width="100%"
 								border="0" cellspacing="0" cellpadding="0">
 								<tr>
-									<td width="20%" height="22">&nbsp;</td>
-									<td width="59%" valign="bottom"><div align="center"
-											class="STYLE1">欢迎你： {% if user.last_name %}
-											{{user.last_name}}{{user.first_name}} {% else %}
+									<td width="10%" height="22">&nbsp;</td>
+									<td width="79%" valign="bottom"><div align="center"
+											class="STYLE1">Welcome:{% if user.last_name %}
+											{{user.first_name}} {% else %}
 											{{user.username}} {%endif%}</div></td>
-									<td width="21%">&nbsp;</td>
+									<td width="11%">&nbsp;</td>
 								</tr>
 							</table></td>
 						<td><table width="100%" border="0" cellspacing="0"

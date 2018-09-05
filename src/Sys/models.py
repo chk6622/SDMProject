@@ -36,6 +36,8 @@ class Project(models.Model):
 
 class MyProfileForm(UserChangeForm):
     project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
+    nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
+    hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
 #     def __init__(self, *args, **kwargs):
 #         super(MyProfileForm, self).__init__(*args, **kwargs)
 #         self.fields.get('groups').label = 'Roles'
@@ -66,5 +68,7 @@ class Profile(object):
      
 class MyProfile(Profile):
     project = models.ForeignKey(Project)
+    nationality=models.CharField(u'Nationality',max_length=30,null=True,blank=True)
+    hobby=models.CharField(u'hobby',max_length=30,null=True,blank=True)
     
 

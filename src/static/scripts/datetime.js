@@ -6,21 +6,21 @@
 	     var dd = now.getDate() , mt = now.getMonth() + 1 , yy = y2k(now.getYear()) , weekVal = now.getDay();
 
 	        if (weekVal==0)
-	       msg1="星期日";
+	       msg1="sunday";
 	    else if (weekVal==1)
-	        msg1="星期一"; 
+	        msg1="monday"; 
 	    else if (weekVal==2)
-	        msg1="星期二"; 
+	        msg1="tuesday"; 
 	    else if (weekVal==3)
-	            msg1="星期三"; 
+	            msg1="wednesday"; 
 	    else if (weekVal==4)
-	            msg1="星期四"; 
+	            msg1="thursday"; 
 	    else if (weekVal==5)
-	            msg1="星期五"; 
+	            msg1="friday"; 
 	    else if (weekVal==6)
-	            msg1="星期六"; 
+	            msg1="saturday"; 
 
-	   document.write(yy+"年"+mt+"月"+dd+"日 "+msg1);
+	   document.write(yy+"-"+mt+"-"+dd+" "+msg1);
 	}
 
 	var flasher = false;

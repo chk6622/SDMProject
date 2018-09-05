@@ -12,27 +12,30 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from Common.UploadFileTools import *
-from Common.ViewTools import *
+from django.shortcuts import render,render_to_response
+from django.template import Context
+# from Common.UploadFileTools import *
+# from Common.ViewTools import *
 from models import *
 
 
 
 
 def index(request):
-    return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+#     return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'index.html')
 
 
 def loginSuccess(request):
-    return render_to_response('main.html', locals(), context_instance=RequestContext(request))
+#     return render_to_response('main.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'main.html')
 
 
 def changePasswordDone(request):
     messages.info(request, 'Reset password success！')
     form = PasswordChangeForm(user=request.user)
-    return render_to_response('sys/passwordChange.html', locals(), context_instance=RequestContext(request))
+#     return render_to_response('sys/passwordChange.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'sys/passwordChange.html', locals())
 
 
 # 

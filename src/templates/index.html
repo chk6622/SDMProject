@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录页</title>
+<title>Login page</title>
 </head>
 <script language='javascript'>
 function mysubmit()
@@ -23,10 +23,10 @@ function mysubmit()
 	{%if messages%} {%for message in messages%} {{message}} {%endfor%}
 	{%endif%}
 	<form method='post' action='' onsubmit='submit()'>
-		{%csrf_token%} 用户名：{{form.username}}{{form.username.errors}}
-		密码:{{form.password}}{{form.password.errors}} <input type='hidden'
+		{%csrf_token%} Username：{{form.username}}{{form.username.errors}}
+		Password:{{form.password}}{{form.password.errors}} <input type='hidden'
 			name='next' value='{{next|escape}}' /> <input type='button'
-			value='登录' value='login' onclick='mysubmit()' />
+			value='login' value='login' onclick='mysubmit()' />
 	</form>
 
 </body>

@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static'
             ],
         },
     },
@@ -129,17 +130,22 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # if True then session will invalid when
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 
+# MEDIA_URL = '/media/'
 
-MEDIA_URL = '/media/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = ''
 
 STATIC_URL = '/static/'
 
-ADMIN_MEDIA_ROOT = '/static/admin'
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
                   )
+
+
+# ADMIN_MEDIA_ROOT = '/static/admin'
+
+
 
 LOGIN_URL = '/'
 
