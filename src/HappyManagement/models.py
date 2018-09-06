@@ -11,6 +11,8 @@ from django import forms
 from django.forms import widgets
 from django.forms.widgets import Widget
 from Sys.models import Project
+from django.contrib.auth.models import User
+from numpy.ma.testutils import __all__masked
 
 
 # Create your models here.
@@ -42,15 +44,17 @@ class HappyLevel(BaseModels.BaseModel):
     
     personal_happy_level=models.CharField(u'personal happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
     project_happy_level=models.CharField(u'project happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
-    project=models.ForeignKey(Project)
+    project=models.ForeignKey(Project,null=True,blank=True)
+    create_user=models.ForeignKey(User,null=True,blank=True)
     
     def __unicode__(self):
-        return ''.join((self.createTime,self.createUser,self.personal_happy_level,self.project_happy_level))
+        return ''.join((self.create_time,self.create_user,self.personal_happy_level,self.project_happy_level))
     
     class Meta:
         ordering=['-create_time']
         permissions=(
-                     ('export_happylevel',u'can export happy level'),
+                    ('query_happylevel',u'can query happy level'),
+                    ('export_happylevel',u'can export happy level'),
                      )
         
 class HappyLevelForm(forms.ModelForm):
@@ -67,7 +71,7 @@ class HappyLevelForm(forms.ModelForm):
     
     class Meta:
         model=HappyLevel
-        fields=('id','b_create_time','e_create_time','create_user_qry','project_qry','personal_happy_level_qry','project_happy_level_qry')     
+        fields='__all__' #('id','b_create_time','e_create_time','create_user_qry','project_qry','personal_happy_level_qry','project_happy_level_qry','personal_happy_level','project_happy_level','create_user','project')     
         initial={}
         
     def __init__(self,*args,**kwargs):

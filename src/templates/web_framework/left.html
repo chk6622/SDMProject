@@ -165,6 +165,9 @@ $(function(){
 			alertMsg()
 		{%endif%}
 	});
+	$('#menu_addHappyLevel').click(function(){
+		navigateTo('/HappyLevelManagement/add')
+	});
 	$('#menu_editUserInfo').click(function(){
 		navigateTo('/UserManagement/edit/?id={{user.id}}')
 	});
@@ -205,9 +208,50 @@ $(
 	<tr>
 		<td valign="top">
 			<table width="151" border="0" align="center" cellpadding="0" cellspacing="0">
-				<!-- user management -->
 				<tr>
 					<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td height="23" background="/static/images/main_47.gif"
+									id="imgmenu6" class="menu_title"
+									onMouseOver="this.className='menu_title2';"
+									onClick="showsubmenu(6)"
+									onMouseOut="this.className='menu_title';" style="cursor: hand"><table
+										width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td width="18%">&nbsp;</td>
+											<td width="82%" class="STYLE1">Happy management</td>
+										</tr>
+									</table></td>
+							</tr>
+							<tr>
+								<td background="/static/images/main_51.gif" id="submenu6">
+									<div class="sec_menu">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td><table width="90%" border="0" align="center"
+														cellpadding="0" cellspacing="0">
+														<tr>
+															<td width="8%" height="25"><div align="center">
+																	<img src="/static/images/left.gif" width="10"
+																		height="10" />
+																</div></td>
+															<td width="92%" height="23"><table width="95%"
+																	border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class='menu' id='menu_addHappyLevel'>Add happy level</td>
+																	</tr>
+																</table></td>
+														</tr>
+													</table></td>
+											</tr>
+											<tr>
+												<td height="5"><img src="/static/images/main_52.gif"
+													width="151" height="5" /></td>
+											</tr>
+										</table>
+									</div>
+								</td>
+							</tr>
 							<tr>
 								<td height="23" background="/static/images/main_47.gif"
 									id="imgmenu6" class="menu_title"

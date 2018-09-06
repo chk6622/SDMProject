@@ -192,7 +192,7 @@ LOGGING = {
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
             'propagate': False
         },
-        'DataServiceManagement.DataServiceView':{
+        'HappyManagement.HappyManagementView':{
             'handlers': ['default', 'console'],
             'level': 'DEBUG',
             'propagate': False        

@@ -19,6 +19,7 @@ from django.conf.urls import include,url
 from django.contrib import admin
 from Sys import url as SysUrl
 from UserManagement import url as userUrl
+from HappyManagement import url as happyLevelUrl
 from django.contrib.auth.views import login,logout,password_change,password_change_done
 from Sys.SysView import loginSuccess,changePasswordDone
 from django.conf.urls.static import static
@@ -30,6 +31,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^Sys/',include(SysUrl)),
     url(r'^UserManagement/',include(userUrl)),
+    url(r'^HappyLevelManagement/',include(happyLevelUrl)),
     
     url(r'media/(?P<path>.*)$',django.views.static.serve,{'document_root':settings.MEDIA_ROOT},name='media'),  #upload file
     url(r'static/(?P<path>.*)$',django.views.static.serve,{'document_root':settings.STATIC_ROOT},name='static'),  #static web page

@@ -1,8 +1,8 @@
-{%extends 'base_template/add_edit_page/addOrEditBase.html'%} {%block
-title%}添加云搜问题记录{%endblock%} {%block saveOrUpdateForm%}
-<form method='post' action='/CloudSearchManagement/saveOrUpdate/'
+{%extends 'base_templates/add_edit_page/addOrEditBase.html'%} 
+{%block title%}add happy level{%endblock%} {%block saveOrUpdateForm%}
+<form method='post' action='/HappyLevelManagement/saveOrUpdate/'
 	enctype='multipart/form-data'>
-	{%csrf_token%} {{optObjForm.id}} {{optObjForm.uploadDir}} <br>
+	{%csrf_token%} {{optObjForm.id}} <br>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td width="20%">&nbsp;</td>
@@ -13,7 +13,7 @@ title%}添加云搜问题记录{%endblock%} {%block saveOrUpdateForm%}
 					<tr>
 						<td width="98%" height="22" bgcolor="#CDEAF8" colspan='2'>
 							<div align="left">
-								&nbsp;&nbsp;<span class="STYLE3">新增云搜问题记录</span>
+								&nbsp;&nbsp;<span class="STYLE3">Add happy level</span>
 							</div>
 						</td>
 					</tr>
