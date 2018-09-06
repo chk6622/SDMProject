@@ -1,5 +1,5 @@
-{% extends 'base_template/query_page/listTableBase.html' %} {%block
-script%} $(function(){ queryUrl='{%block query_url%}{%endblock%}'
+{% extends 'base_templates/query_page/listTableBase.html' %} 
+{%block script%} $(function(){ queryUrl='{%block query_url%}{%endblock%}'
 $('#to_next_page_image').click(function(){ //下一页
 window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{nextPageNum}}'
 }).hover(function(){ $(this).addClass('mouseHover') },function(){
@@ -36,8 +36,7 @@ else { window.location=url; } } {%endblock%} {%block table_head%}
 								<td width="5%"><div align="center">
 										<img src="/static/tab/images/tb.gif" width="16" height="16" />
 									</div></td>
-								<td width="95%" class="STYLE1"><span class="STYLE3">{%block
-										list_name%}{% endblock%}</td>
+								<td width="95%" class="STYLE1"><span class="STYLE3">{%block list_name%}{% endblock%}</td>
 							</tr>
 						</table></td>
 					<td width="54%"><table border="0" align="right"
@@ -63,10 +62,7 @@ else { window.location=url; } } {%endblock%} {%block table_head%}
 		<td><table width="100%" border="0" cellspacing="0"
 				cellpadding="0">
 				<tr>
-					<td class="STYLE4">&nbsp;&nbsp;共有{%block
-						total_size%}{{totalSize}}{%endblock%}条记录，当前显示从第{%block
-						page_size%}{{beginSize}}条-第{{endSize}}条{%endblock%}，当前为第{%block
-						page_num%}{{pageNum}}/{{maxPageNum}}{%endblock%}页</td>
+					<td class="STYLE4">&nbsp;&nbsp;共有{%block total_size%}{{totalSize}}{%endblock%}条记录，当前显示从第{%block page_size%}{{beginSize}}条-第{{endSize}}条{%endblock%}，当前为第{%block page_num%}{{pageNum}}/{{maxPageNum}}{%endblock%}页</td>
 					<td><table border="0" align="right" cellpadding="0"
 							cellspacing="0">
 							<tr>

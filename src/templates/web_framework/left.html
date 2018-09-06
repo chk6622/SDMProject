@@ -165,8 +165,11 @@ $(function(){
 			alertMsg()
 		{%endif%}
 	});
-	$('#menu_queryWorkProject').click(function(){
-		navigateTo('/WorkProjectManagement/query/')
+	$('#menu_editUserInfo').click(function(){
+		navigateTo('/UserManagement/edit/?id={{user.id}}')
+	});
+	$('#menu_queryUserManagement').click(function(){
+		navigateTo('/UserManagement/query/')
 	});
 	$('#menu_passwordChange').click(function(){
 		navigateTo('/Sys/passwordChange/')
@@ -181,7 +184,7 @@ $(
 			$('#Logout').click(function(){
 				if(confirm('Do you want to quit the system？'))
 				{
-					parent.window.location='/logout/'
+					window.parent.parent.parent.location='/logout/'
 				}
 			});
 		}
@@ -225,6 +228,7 @@ $(
 											<tr>
 												<td><table width="90%" border="0" align="center"
 														cellpadding="0" cellspacing="0">
+														{% if perms.auth.change_user %} 
 														<tr>
 															<td width="8%" height="25"><div align="center">
 																	<img src="/static/images/left.gif" width="10"
@@ -233,10 +237,25 @@ $(
 															<td width="92%" height="23"><table width="95%"
 																	border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td class='menu' id='menu_userManagement'>User Management</td>
+																		<td class='menu' id='menu_editUserInfo'>Edit personal info</td>
 																	</tr>
 																</table></td>
 														</tr>
+														{% endif %}
+														{%if perms.auth.query_user%} 
+														<tr>
+															<td width="8%" height="25"><div align="center">
+																	<img src="/static/images/left.gif" width="10"
+																		height="10" />
+																</div></td>
+															<td width="92%" height="23"><table width="95%"
+																	border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class='menu' id='menu_queryUserManagement'>Query user</td>
+																	</tr>
+																</table></td>
+														</tr>
+														{%endif%}
 														<tr>
 															<td width="8%" height="25"><div align="center">
 																	<img src="/static/images/left.gif" width="10"

@@ -18,7 +18,7 @@ Including another URLconf
 from django.conf.urls import include,url
 from django.contrib import admin
 from Sys import url as SysUrl
-from UserManage import url as userUrl
+from UserManagement import url as userUrl
 from django.contrib.auth.views import login,logout,password_change,password_change_done
 from Sys.SysView import loginSuccess,changePasswordDone
 from django.conf.urls.static import static

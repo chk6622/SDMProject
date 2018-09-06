@@ -17,6 +17,8 @@ from django.db import models
 from django.db.models.fields.related import ForeignKey
 from django.forms import ModelForm
 from django.forms.widgets import Widget
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
 
 # Create your models here.
 
@@ -64,11 +66,23 @@ class ProfileBase(type):
  
 class Profile(object):
     __metaclass__ = ProfileBase
+    class Meta:
+        permissions = (
+            ("query_user", "Can query user"),
+        )
  
      
 class MyProfile(Profile):
     project = models.ForeignKey(Project)
     nationality=models.CharField(u'Nationality',max_length=30,null=True,blank=True)
     hobby=models.CharField(u'hobby',max_length=30,null=True,blank=True)
+ 
+ 
+# content_type=ContentType.objects.get_for_models(User)
+# permission=Permission.objects.create(
+#     codename='query_user',
+#     name='Can query user',
+#     content_type=content_type,
+#     )
     
 
