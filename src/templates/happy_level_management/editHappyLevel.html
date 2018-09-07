@@ -1,8 +1,8 @@
 {%extends 'base_templates/add_edit_page/addOrEditBase.html'%} 
-{%block title%}edit user information{%endblock%} {%block saveOrUpdateForm%}
+{%block title%}happy level information{%endblock%} {%block saveOrUpdateForm%}
 <script language="javascript">	
 </script>
-<form method='post' action='/UserManagement/saveOrUpdate/'
+<form method='post' action='/HappyManagement/saveOrUpdate/'
 	enctype='multipart/form-data'>
 	{%csrf_token%} {{optObjForm.id}} <br>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -15,7 +15,7 @@
 					<tr>
 						<td width="98%" height="22" bgcolor="#CDEAF8" colspan='2'>
 							<div align="left">
-								&nbsp;&nbsp;<span class="STYLE3">edit user information</span>
+								&nbsp;&nbsp;<span class="STYLE3">happy level information</span>
 							</div>
 						</td>
 					</tr>
@@ -23,13 +23,13 @@
 					<tr>
 						<td width="25%" height="22" bgcolor="#E9F6FC">
 							<div align="center">
-								<span class="STYLE1">{{optObjForm.first_name.label_tag}}</span>&nbsp;
+								<span class="STYLE1">{{optObjForm.project.label_tag}}</span>&nbsp;
 							</div>
 						</td>
 						<td width="75%" height="22" bgcolor="#FFFFFF">
 							<div align="left">
-								&nbsp;<span class="STYLE1">{{optObjForm.first_name}}<span
-									class="helptext">{{optObjForm.first_name.help_text}}</span>{{optObjForm.first_name.errors}}
+								&nbsp;<span class="STYLE1">{{optObjForm.project}}<span
+									class="helptext">{{optObjForm.project.help_text}}</span>{{optObjForm.project.errors}}
 								</span>
 							</div>
 						</td>
@@ -37,26 +37,26 @@
 					<tr>
 						<td width="10%" height="22" bgcolor="#E9F6FC">
 							<div align="center">
-								<span class="STYLE1">{{optObjForm.last_name.label_tag}}</span>&nbsp;
+								<span class="STYLE1">{{optObjForm.personal_happy_level.label_tag}}</span>&nbsp;
 							</div>
 						</td>
 						<td width="15%" height="22" bgcolor="#FFFFFF">
 							<div align="left">
-								&nbsp;<span class="radio">{{optObjForm.last_name}}<span
-									class="helptext">{{optObjForm.last_name.help_text}}</span></span>{{optObjForm.last_name.errors}}
+								&nbsp;<span class="radio">{{optObjForm.personal_happy_level}}<span
+									class="helptext">{{optObjForm.personal_happy_level.help_text}}</span></span>{{optObjForm.personal_happy_level.errors}}
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td width="10%" height="22" bgcolor="#E9F6FC">
 							<div align="center">
-								<span class="STYLE1">{{optObjForm.email.label_tag}}</span>&nbsp;
+								<span class="STYLE1">{{optObjForm.project_happy_level.label_tag}}</span>&nbsp;
 							</div>
 						</td>
 						<td width="15%" height="22" bgcolor="#FFFFFF">
 							<div align="left">
-								&nbsp;<span class="STYLE1">{{optObjForm.email}}<span
-									class="helptext">{{optObjForm.email.help_text}}</span>{{optObjForm.email.errors}}
+								&nbsp;<span class="STYLE1">{{optObjForm.project_happy_level}}<span
+									class="helptext">{{optObjForm.project_happy_level.help_text}}</span>{{optObjForm.project_happy_level.errors}}
 								</span>
 							</div>
 						</td>
@@ -64,27 +64,13 @@
 					<tr>
 						<td width="10%" height="22" bgcolor="#E9F6FC">
 							<div align="center">
-								<span class="STYLE1">{{optObjForm.nationality.label_tag}}</span>&nbsp;
+								<span class="STYLE1">{{optObjForm.create_time.label_tag}}</span>&nbsp;
 							</div>
 						</td>
 						<td width="15%" height="22" bgcolor="#FFFFFF">
 							<div align="left">
-								&nbsp;<span class="STYLE1">{{optObjForm.nationality}}<span
-									class="helptext">{{optObjForm.nationality.help_text}}</span>{{optObjForm.nationality.errors}}
-								</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="10%" height="22" bgcolor="#E9F6FC">
-							<div align="center">
-								<span class="STYLE1">{{optObjForm.hobby.label_tag}}</span>&nbsp;
-							</div>
-						</td>
-						<td width="15%" height="22" bgcolor="#FFFFFF">
-							<div align="left">
-								&nbsp;<span class="STYLE1">{{optObjForm.hobby}}<span
-									class="helptext">{{optObjForm.hobby.help_text}}</span>{{optObjForm.hobby.errors}}
+								&nbsp;<span class="STYLE1">{{create_time}}<span
+									class="helptext"></span>
 								</span>
 							</div>
 						</td>

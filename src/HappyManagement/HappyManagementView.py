@@ -26,10 +26,9 @@ ModelKlass=HappyLevel
 FormKlass=HappyLevelForm  
 queryFilterParams=[]      
 queryFilterParams.append(('create_user__contains','create_user_qry'))
-queryFilterParams.append(('project_qry__contains','project_qry'))
+queryFilterParams.append(('project','project_qry'))
 queryFilterParams.append(('personal_happy_level__contains','personal_happy_level_qry'))
 queryFilterParams.append(('project_happy_level__contains','project_happy_level_qry'))
-queryFilterParams.append(('project_qry__contains','project_qry'))
 queryFilterParams.append(('create_time__gte','b_create_time'))
 queryFilterParams.append(('create_time__lte','e_create_time'))
 
@@ -40,10 +39,14 @@ logger = logging.getLogger(__name__)
 @login_required
 def query(request):
     logger.debug("'%s(%s%s)' execute method" % (request.user.username,request.user.last_name,request.user.first_name))
-    isSuperuser=request.user.is_superuser
-    project_id=request.user.project_id
-#     perms=request.get_model_perms()
-#     print isSuperuser,project,perms
+    isSuperuser=None
+    project=None
+    try:
+        isSuperuser=request.user.is_superuser
+        project=request.user.project
+    except Exception, err:
+        pass
+
     paramDic=getRequestParam(request)
     pageSize=paramDic.get('pageSize')
     pageNum=paramDic.get('pageNum')
@@ -51,7 +54,11 @@ def query(request):
     filterDic={}
     for filterParam in queryFilterParams:  #add query params
         getFilterDic(request, filterDic, filterParam[0], filterParam[1])
+    
+    if not isSuperuser and project:
+        filterDic.update({'project':project})
         
+    
     queryForm=FormKlass(paramDic)
     totalSize=ModelKlass.objects.filter(**filterDic).count()
     (pageNum,pageSize,beginSize,endSize,maxPageNum,nextPageNum,prevPageNum)=getSplitPageParams(pageSize,pageNum,totalSize)
@@ -109,7 +116,11 @@ def saveOrUpdate(request):
 #             addForm=FormKlass()
         if optObjForm.is_valid():
             try:
-                optObjForm.instance.create_user=request.user
+                if not optObjForm.instance.id: #add
+                    optObjForm.instance.create_user=request.user
+                    optObjForm.instance.update_user=request.user
+                else:  #edit
+                    optObjForm.instance.update_user=request.user
                 optObjForm.instance.project=request.user.project
                 optObj=optObjForm.save()
                 messages.info(request,'save success!')
@@ -120,3 +131,49 @@ def saveOrUpdate(request):
         optObjForm=FormKlass()
         returnTemplate=addUrl
     return render(request, returnTemplate, locals())
+
+
+@login_required
+def exportData(request):
+    logger.debug("'%s(%s%s)' execute method" % (request.user.username,request.user.last_name,request.user.first_name))
+    isSuperuser=None
+    project=None
+    try:
+        isSuperuser=request.user.is_superuser
+        project=request.user.project
+    except Exception, err:
+        pass
+    fileName='Happy level %s.csv' % datetime.datetime.now().strftime(settings.GLOBAL_DATE_FORMAT)
+
+    filterDic={}
+    for filterParam in queryFilterParams:
+        getFilterDic(request, filterDic, filterParam[0], filterParam[1])
+        
+    if not isSuperuser and project:
+        filterDic.update({'project':project})
+
+    response=StreamingHttpResponse(getObj(filterDic))
+    response['Content-Type']='application/octet-stream'
+    response['Content-Disposition']="attachment;filename={0}".format(urlquote(fileName))
+    return response
+
+            
+def getObj(filterDic):
+    logger.debug("enter 'getObj' method")
+    isExportTitle=False
+    totalSize=ModelKlass.objects.filter(**filterDic).count()
+    if totalSize>0:
+        queryResultList=ModelKlass.objects.filter(**filterDic)[0:totalSize]
+        for optObj in queryResultList:
+            (attrlabels,rList)=optObj.getFormatObj()
+            if not isExportTitle:
+                row=','.join(attrlabels)
+                row='%s\r\n' % row
+                yield row
+                isExportTitle=True
+            if isinstance(optObj,ModelKlass):
+                row=','.join(map(lambda x:x.replace('\r\n',''),rList))
+                row='%s\r\n' % row
+                yield row
+    else:
+        yield 'No data!'

@@ -34,8 +34,13 @@ logger = logging.getLogger(__name__)
 @login_required
 def query(request):
     logger.debug("'%s(%s%s)' execute method" % (request.user.username,request.user.last_name,request.user.first_name))
-    isSuperuser=request.user.is_superuser
-    project_id=request.user.project_id
+    isSuperuser=None
+    project=None
+    try:
+        isSuperuser=request.user.is_superuser
+        project=request.user.project
+    except Exception, err:
+        pass
 #     perms=request.get_model_perms()
 #     print isSuperuser,project,perms
     paramDic=getRequestParam(request)
@@ -47,7 +52,7 @@ def query(request):
         getFilterDic(request, filterDic, filterParam[0], filterParam[1])
         
     if not isSuperuser:
-        filterDic.update({'project_id':project_id})
+        filterDic.update({'project':project})
     
 
     queryForm=FormKlass(paramDic)

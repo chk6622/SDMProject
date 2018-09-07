@@ -19,5 +19,6 @@ urlpatterns = [
     url(r'^add/', addOrEdit), 
     url(r'^edit/', addOrEdit),
     url(r'^saveOrUpdate/', saveOrUpdate), 
+    url(r'^exportData/', exportData),
 
 ]

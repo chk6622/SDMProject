@@ -1,10 +1,10 @@
 {% extends 'base_templates/query_page/queryTable.html' %} 
-{%block query_url%}/UserManagement/query{%endblock%} {%block queryParam%}
+{%block query_url%}/HappyManagement/query{%endblock%} {%block queryParam%}
 <tr>
 	<td width="98%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF" colspan='6'>
 		<div align="left">
-			&nbsp;&nbsp;<span class="STYLE3">User information querys</span>
+			&nbsp;&nbsp;<span class="STYLE3">Happy level query</span>
 		</div>
 	</td>
 </tr>
@@ -12,34 +12,58 @@
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF">
 		<div align="center">
-			<span class="STYLE1">{{queryForm.first_name.label_tag}}</span>
+			<span class="STYLE1">{{queryForm.project_qry.label_tag}}</span>
 		</div>
 	</td>
 	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
 		<div align="left">
-			<span class="STYLE1">{{queryForm.first_name_qry}}</span>
+			<span class="STYLE1">{{queryForm.project_qry}}</span>
 		</div>
 	</td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF">
 		<div align="center">
-			<span class="STYLE1">{{queryForm.last_name.label_tag}}</span>
+			<span class="STYLE1">{{queryForm.b_create_time.label_tag}}</span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='3'>
+		<div align="left">
+			<span class="STYLE1">{{queryForm.b_create_time}} - {{queryForm.e_create_time}}</span>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1">{{queryForm.project_happy_level_qry.label_tag}}</span>
 		</div>
 	</td>
 	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
 		<div align="left">
-			<span class="STYLE1">{{queryForm.last_name_qry}}</span>
+			<span class="STYLE1">{{queryForm.project_happy_level_qry}}</span>
 		</div>
 	</td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF">
 		<div align="center">
-			<span class="STYLE1">{{queryForm.email.label_tag}}</span>
+			<span class="STYLE1">{{queryForm.personal_happy_level_qry.label_tag}}</span>
 		</div>
 	</td>
 	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
 		<div align="left">
-			<span class="STYLE1">{{queryForm.email_qry}}</span>
+			<span class="STYLE1">{{queryForm.personal_happy_level_qry}}</span>
+		</div>
+	</td>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1"></span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
+		<div align="left">
+			<span class="STYLE1"></span>
 		</div>
 	</td>
 </tr>
@@ -49,42 +73,38 @@
 {% endblock%} 
 {%block add_button%} {%endblock%} 
 {%block export_button%} 
-	{%if perms.UserManagement.export_userinformation%}
-		<!-- table width="90%" border="0" cellpadding="0" cellspacing="0">
+	{%if perms.HappyManagement.export_happylevel%}
+		<table width="90%" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="STYLE1"><div align="center">
 						<img src="/static/tab/images/33.gif" width="14" height="14" />
 					</div></td>
 				<td class="STYLE1">
 					<div align="center">
-						<a href='/UserManagement/exportData/'>export</a>
+						<a href='/HappyManagement/exportData/'>export</a>
 					</div>
 				</td>
 			</tr>
-		</table> -->
+		</table>
 	{%endif%} 
 {%endblock%} 
 {%block table_title%}
 <tr>
-	<td width="10%" height="22" background="/static/tab/images/bg.gif"
-		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">First name</span>
-		</div></td>
-	<td width="20%" height="22" background="/static/tab/images/bg.gif"
-		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Last name</span>
-		</div></td>
 	<td width="30%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Email</span>
-		</div></td>
-	<td width="10%" height="22" background="/static/tab/images/bg.gif"
-		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Nationality</span>
+			<span class="STYLE1">project</span>
 		</div></td>
 	<td width="20%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Hobby</span>
+			<span class="STYLE1">create time</span>
+		</div></td>
+	<td width="20%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF"><div align="center">
+			<span class="STYLE1">personal happy level</span>
+		</div></td>
+	<td width="20%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF"><div align="center">
+			<span class="STYLE1">project happy level</span>
 		</div></td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF" class="STYLE1"><div align="center">process</div></td>
@@ -94,27 +114,24 @@
 {% if queryResultList %}
 	{%for optObj in queryResultList%}
 		<tr>
-			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.first_name}}</span>
+			<td height="30" bgcolor="#FFFFFF"><div align="center">
+					<span class="STYLE1">{{optObj.project}}</span>
 				</div></td>
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.last_name}}</span>
+					<span class="STYLE1">{{optObj.create_time|date:'Y-m-d'}}</span>
 				</div></td>
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.email}}</span>
+					<span class="STYLE1">{{optObj.get_personal_happy_level_display}}</span>
 				</div></td>
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.nationality}}</span>
+					<span class="STYLE1">{{optObj.get_project_happy_level_display}}</span>
 				</div></td>
-			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.hobby}}</span>
-				</div></td>
-			<td height="20" bgcolor="#FFFFFF">
+			<td height="10" bgcolor="#FFFFFF">
 				<div align="center">
 					<span class="STYLE4"> 
-					{%if perms.UserManagement.change_userinformation%} 
+					{%if perms.HappyManagement.change_happylevel%} 
 						<img src="/static/tab/images/edt.gif" width="16" height="16" />
-							<a href='/UserManagement/edit/?id={{optObj.id}}'>edit</a>
+							<a href='/HappyManagement/edit/?id={{optObj.id}}'>edit</a>
 						</span>
 					{%endif%}
 				</div>

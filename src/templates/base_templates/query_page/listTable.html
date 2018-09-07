@@ -1,28 +1,61 @@
 {% extends 'base_templates/query_page/listTableBase.html' %} 
-{%block script%} $(function(){ queryUrl='{%block query_url%}{%endblock%}'
-$('#to_next_page_image').click(function(){ //下一页
-window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{nextPageNum}}'
-}).hover(function(){ $(this).addClass('mouseHover') },function(){
-$(this).removeClass('mouseHover') });
-$('#to_prev_page_image').click(function(){ //上一页
-window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{prevPageNum}}'
-}).hover(function(){ $(this).addClass('mouseHover') },function(){
-$(this).removeClass('mouseHover') });
-$('#to_first_page_image').click(function(){ //第一页
-window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum=1'
-}).hover(function(){ $(this).addClass('mouseHover') },function(){
-$(this).removeClass('mouseHover') });
-$('#to_last_page_image').click(function(){ //最后一页
-window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{maxPageNum}}'
-}).hover(function(){ $(this).addClass('mouseHover') },function(){
-$(this).removeClass('mouseHover') });
-$('#skip_url_image').click(function(){ //跳到第x页
-pageNum=$('#skip_url_textfield').val()
-window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum='+pageNum
-}).hover(function(){ $(this).addClass('mouseHover') },function(){
-$(this).removeClass('mouseHover') }); }); function locationUrl(msg,url)
-//跳转到特定url { if(msg!=null) { if(confirm(msg)) { window.location=url; } }
-else { window.location=url; } } {%endblock%} {%block table_head%}
+{%block script%} 
+$(function(){
+	queryUrl='{%block query_url%}{%endblock%}'
+	$('#to_next_page_image').click(function(){  //下一页
+		window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{nextPageNum}}'
+	}).hover(function(){
+				$(this).addClass('mouseHover')
+			},function(){
+				$(this).removeClass('mouseHover')
+			});
+	$('#to_prev_page_image').click(function(){  //上一页
+		window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{prevPageNum}}'
+	}).hover(function(){
+				$(this).addClass('mouseHover')
+			},function(){
+				$(this).removeClass('mouseHover')
+			});
+	$('#to_first_page_image').click(function(){  //第一页
+		window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum=1'
+	}).hover(function(){
+				$(this).addClass('mouseHover')
+			},function(){
+				$(this).removeClass('mouseHover')
+			});
+	$('#to_last_page_image').click(function(){  //最后一页
+		window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum={{maxPageNum}}'
+	}).hover(function(){
+				$(this).addClass('mouseHover')
+			},function(){
+				$(this).removeClass('mouseHover')
+			});
+	$('#skip_url_image').click(function(){  //跳到第x页
+		pageNum=$('#skip_url_textfield').val()
+		window.location=queryUrl+'/?pageSize={{pageSize}}&pageNum='+pageNum
+	}).hover(function(){
+				$(this).addClass('mouseHover')
+			},function(){
+				$(this).removeClass('mouseHover')
+			});
+});
+function locationUrl(msg,url)  //跳转到特定url
+{
+	if(msg!=null)
+	{
+		if(confirm(msg))
+		{
+			window.location=url;
+		}
+	}
+	else
+	{
+		window.location=url;
+	}
+	
+}
+{%endblock%} 
+{%block table_head%}
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td width="12" height="30"><img
@@ -62,27 +95,39 @@ else { window.location=url; } } {%endblock%} {%block table_head%}
 		<td><table width="100%" border="0" cellspacing="0"
 				cellpadding="0">
 				<tr>
-					<td class="STYLE4">&nbsp;&nbsp;共有{%block total_size%}{{totalSize}}{%endblock%}条记录，当前显示从第{%block page_size%}{{beginSize}}条-第{{endSize}}条{%endblock%}，当前为第{%block page_num%}{{pageNum}}/{{maxPageNum}}{%endblock%}页</td>
+					<td class="STYLE4">&nbsp;&nbsp;Showing {%block page_size%}{{beginSize}} to {{endSize}}{%endblock%} of {%block total_size%}{{totalSize}}{%endblock%} records. Page {%block page_num%}{{pageNum}} of {{maxPageNum}}{%endblock%}</td>
 					<td><table border="0" align="right" cellpadding="0"
 							cellspacing="0">
 							<tr>
-								<td width="40"><img id='to_first_page_image'
-									src="/static/tab/images/first.gif" width="37" height="15" /></td>
-								<td width="45"><img id='to_prev_page_image'
-									src="/static/tab/images/back.gif" width="43" height="15" /></td>
-								<td width="45"><img id='to_next_page_image'
-									src="/static/tab/images/next.gif" width="43" height="15" /></td>
-								<td width="40"><img id='to_last_page_image'
-									src="/static/tab/images/last.gif" width="37" height="15" /></td>
-								<td width="100"><div align="center">
-										<span class="STYLE1">转到第 <input id='skip_url_textfield'
+								<td width="30" align="center">
+									<!--  img id='to_first_page_image' src="/static/tab/images/first.gif" width="37" height="15" /-->
+									<button id='to_first_page_image'>|<</button> 
+								</td>
+								<td width="35" align="center">
+									<!-- img id='to_prev_page_image' src="/static/tab/images/back.gif" width="43" height="15" /> -->
+									<button id='to_prev_page_image'><</button> 
+								</td>
+								<td width="35" align="center">
+									<!-- img id='to_next_page_image' src="/static/tab/images/next.gif" width="43" height="15" /> -->
+									<button id='to_next_page_image'>></button>
+								</td>
+								<td width="30" align="center">
+									<!-- img id='to_last_page_image' src="/static/tab/images/last.gif" width="37" height="15" /> -->
+									<button id='to_last_page_image'>>|</button>
+								</td>
+								<td width="150">
+									<div align="right">
+										<span class="STYLE4">Jump to <input id='skip_url_textfield'
 											name="textfield" type="text" size="4"
 											style="height: 12px; width: 20px; border: 1px solid #999999;" />
-											页
+											page&nbsp;
 										</span>
-									</div></td>
-								<td width="40"><img id='skip_url_image'
-									src="/static/tab/images/go.gif" width="37" height="15" /></td>
+									</div>
+								</td>
+								<td width="40">
+								<!-- img id='skip_url_image' src="/static/tab/images/go.gif" width="37" height="15" /> -->
+								<button id='skip_url_image'>Go</button> 
+								</td>
 							</tr>
 						</table></td>
 				</tr>

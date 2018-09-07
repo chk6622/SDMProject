@@ -35,7 +35,9 @@ def getChoice(choiceList,hasBlank=False):
 def getAllProject():
     lReturn=[]
     try:
-        lReturn=Project.objects.filter({'is_active':'1'})
+        projects=Project.objects.all()
+        for project in projects:
+            lReturn.append({project.id,project.projectName})
     except Exception, err:
         pass
     return lReturn
@@ -46,6 +48,8 @@ class HappyLevel(BaseModels.BaseModel):
     project_happy_level=models.CharField(u'project happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
     project=models.ForeignKey(Project,null=True,blank=True)
     create_user=models.ForeignKey(User,null=True,blank=True)
+    # update_user should be User Foreign Key, but I have to set related_name, because I already have one User FK in model
+    update_user=models.ForeignKey(User,null=True,blank=True, related_name='happylevel_updateuser')
     
     def __unicode__(self):
         return ''.join((self.create_time,self.create_user,self.personal_happy_level,self.project_happy_level))
@@ -57,9 +61,41 @@ class HappyLevel(BaseModels.BaseModel):
                     ('export_happylevel',u'can export happy level'),
                      )
         
+    def getFormatObj(self):
+        rList=[]
+        attrNames=('project_id','create_time','personal_happy_level','project_happy_level')
+        attrlabels=('Project','Create time','Personal happy level','Project happy level')
+        for attr in attrNames:                
+            tmpAttr=self.__dict__.get(attr)
+            if tmpAttr:
+                if isinstance(tmpAttr,datetime.datetime):
+                    tmpAttr=tmpAttr.strftime(settings.GLOBAL_DATE_FORMAT)
+                    rList.append(tmpAttr)
+                elif attr=='project_happy_level':
+                    happy_name=''
+                    for (value,name) in happyLevel_choice:
+                        if value==tmpAttr:
+                            happy_name=name
+                            break
+                    rList.append(happy_name)
+                elif attr=='personal_happy_level':
+                    happy_name=''
+                    for (value,name) in happyLevel_choice:
+                        if value==tmpAttr:
+                            happy_name=name
+                            break
+                    rList.append(happy_name)
+                elif attr=='project_id':
+                    rList.append(self.project.projectName)
+                else:
+                    rList.append(tmpAttr)
+            else:
+                rList.append('')
+        return attrlabels,rList
+        
 class HappyLevelForm(forms.ModelForm):
     id=forms.CharField(label=u'id', required=False,widget=forms.HiddenInput)
-    b_create_time=forms.DateField(label=u'from create time',help_text=u' yyyy-MM-dd',required=False)
+    b_create_time=forms.DateField(label=u'create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
     e_create_time=forms.DateField(label=u'to create time',help_text=u' yyyy-MM-dd',required=False)
     
     create_user_qry=forms.CharField(label=u'create user',help_text=u'',required=False)
@@ -76,6 +112,6 @@ class HappyLevelForm(forms.ModelForm):
         
     def __init__(self,*args,**kwargs):
         super(HappyLevelForm,self).__init__(*args,**kwargs)
-        projects=getChoice(getAllProject())
-        self.fields['project_qry'].choices=getChoice(projects,hasBlank=False)
+        projects=getAllProject()
+        self.fields['project_qry'].choices=getChoice(projects,hasBlank=True)
         self.fields['project'].choices=getChoice(projects,hasBlank=True)

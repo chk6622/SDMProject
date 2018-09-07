@@ -97,63 +97,6 @@ $(function(){
 	}).mouseout(function(){
 		$(this).removeClass('menu_hover');
 	});
-	$('#menu_addDepNotice').click(function(){
-		{%if perms.DepNoticeManagement.add_depnotice%}
-			navigateTo('/DepNoticeManagement/add/')
-		{%else%}
-			alertMsg()
-		{%endif%}
-	});
-	$('#menu_queryDepNotice').click(function(){
-		navigateTo('/DepNoticeManagement/query/')
-	});
-	$('#menu_addRecOfficalDoc').click(function(){
-		{%if perms.OfficalDocManagement.add_recofficaldoc%}
-			navigateTo('/RecOfficalDocManagement/add/')
-		{%else%}
-			alertMsg()
-		{%endif%}
-	});
-	$('#menu_queryRecOfficalDoc').click(function(){
-		navigateTo('/RecOfficalDocManagement/query/')
-	});
-	$('#menu_addSendOfficalDoc').click(function(){
-		{%if perms.OfficalDocManagement.add_sendofficaldoc%}
-			navigateTo('/SendOfficalDocManagement/add/')
-		{%else%}
-			alertMsg()
-		{%endif%}
-	});
-	$('#menu_querySendOfficalDoc').click(function(){
-		navigateTo('/SendOfficalDocManagement/query/')
-	});
-	$('#menu_addDataService').click(function(){
-		{%if perms.DataServiceManagement.add_dataservice%}
-			navigateTo('/DataServiceManagement/add/')
-		{%else%}
-			alertMsg()
-		{%endif%}
-	});
-	$('#menu_queryDataService').click(function(){
-		navigateTo('/DataServiceManagement/query/')
-	});
-	$('#menu_addCloudSearch').click(function(){
-		{%if perms.CloudSearchManagement.add_cloudsearch%}
-			navigateTo('/CloudSearchManagement/add/')
-		{%else%}
-			alertMsg()
-		{%endif%}
-	});
-	$('#menu_queryCloudSearch').click(function(){
-		navigateTo('/CloudSearchManagement/query/')
-	});
-	$('#menu_addWorkDiary').click(function(){
-		{%if perms.WorkDiaryManagement.add_workdiary%}
-			navigateTo('/WorkDiaryManagement/add/')
-		{%else%}
-			alertMsg()
-		{%endif%}
-	});
 	$('#menu_queryWorkDiary').click(function(){
 		navigateTo('/WorkDiaryManagement/query/')
 	});
@@ -166,7 +109,10 @@ $(function(){
 		{%endif%}
 	});
 	$('#menu_addHappyLevel').click(function(){
-		navigateTo('/HappyLevelManagement/add')
+		navigateTo('/HappyManagement/add')
+	});
+	$('#menu_queryHappyLevel').click(function(){
+		navigateTo('/HappyManagement/query')
 	});
 	$('#menu_editUserInfo').click(function(){
 		navigateTo('/UserManagement/edit/?id={{user.id}}')
@@ -230,6 +176,7 @@ $(
 											<tr>
 												<td><table width="90%" border="0" align="center"
 														cellpadding="0" cellspacing="0">
+														{% if perms.HappyManagement.change_happylevel %} 
 														<tr>
 															<td width="8%" height="25"><div align="center">
 																	<img src="/static/images/left.gif" width="10"
@@ -242,6 +189,21 @@ $(
 																	</tr>
 																</table></td>
 														</tr>
+														{%endif%}
+														{% if perms.HappyManagement.query_happylevel %}
+														<tr>
+															<td width="8%" height="25"><div align="center">
+																	<img src="/static/images/left.gif" width="10"
+																		height="10" />
+																</div></td>
+															<td width="92%" height="23"><table width="95%"
+																	border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class='menu' id='menu_queryHappyLevel'>Query happy level</td>
+																	</tr>
+																</table></td>
+														</tr>
+														{%endif%}
 													</table></td>
 											</tr>
 											<tr>
