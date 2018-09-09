@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 from django.db import models
 from Common import BaseModels
 import datetime
@@ -13,6 +14,7 @@ from django.forms.widgets import Widget
 from Sys.models import Project
 from django.contrib.auth.models import User
 from numpy.ma.testutils import __all__masked
+import uuid
 
 
 # Create your models here.
@@ -21,6 +23,12 @@ happyLevel_choice=[
                     ('2',u'normal'),
                     ('3',u'happy')
                     ]
+
+taskState_choice=[
+    ('1','undone'),
+    ('2','done'),
+    ('3','timeout')
+    ]
 
 def getChoice(choiceList,hasBlank=False):
     returnList=[]
@@ -41,6 +49,32 @@ def getAllProject():
     except Exception, err:
         pass
     return lReturn
+
+class TaskBatch(models.Model):
+    '''
+    Task batch class
+    '''
+    create_time=models.DateTimeField(u'Task batch create time',auto_now_add=True)
+    def __unicode__(self):
+        return 'Task batch %s' % self.create_time
+    
+class TaskState(models.Model):
+    '''
+    Task state class
+    '''
+    id= models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    task_batch=models.ForeignKey(TaskBatch,null=True,blank=True)
+    user=models.ForeignKey(User,null=True,blank=True)
+    email=models.CharField(u'email',max_length=100,null=True,blank=True)
+    project=models.ForeignKey(Project,null=True,blank=True)
+    task_state=models.CharField(u'task state level',max_length=50,choices=taskState_choice,null=True,blank=True)
+    
+    class Meta:
+        ordering=[]
+        permissions=(
+                    ('query_taskstate',u'can query task state'),
+                    ('export_taskstate',u'can export task state'),
+                     )
 
 class HappyLevel(BaseModels.BaseModel):
     
@@ -115,3 +149,6 @@ class HappyLevelForm(forms.ModelForm):
         projects=getAllProject()
         self.fields['project_qry'].choices=getChoice(projects,hasBlank=True)
         self.fields['project'].choices=getChoice(projects,hasBlank=True)
+        
+
+    
