@@ -26,11 +26,7 @@ from django.conf.urls.static import static
 import SDMProject.views as HtmlViews 
 import settings
 import django.views.static
-import os
-import django
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SDMProject.settings")
-django.setup()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

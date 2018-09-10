@@ -1,29 +1,38 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+#!/usr/bin/env python
+#coding: utf-8
+'''
+Created on Sep 10, 2018
+
+@author: xingtong
+'''
 
 import os
 import django
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# import SDMProject.settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SDMProject.settings")
 django.setup()
-from django.test import TestCase
+
 from HappyManagement.models import TaskBatch,TaskState,taskState_choice
-
-import sys
-import os
-
-from Sys.models import Project
 from django.contrib.auth.models import User
-from django.db.models import Q
 from django.db import transaction
+import logging
+
+logger = logging.getLogger(__name__)
 
 
-def test():
+def happyTaskCrontab():
+    '''
+    user submit happy level task crontab
+    create task batch and state at certain time every day
+    '''
     try:
         with transaction.atomic():
             TaskState.objects.filter(task_state='1').update(task_state='3')  #update all records which are undone into timeout
             tb=TaskBatch()
             tb.save()
-            for user in User.objects.filter(is_active='1', project_id__isnull = False):  #get all users 
+            for user in User.objects.filter(is_active='1', project_id__isnull = False):  #get all users who is active and belong to a project
                 ts=TaskState()
                 ts.task_batch=tb
                 ts.task_state=taskState_choice[0][0]
@@ -32,8 +41,7 @@ def test():
                 ts.project=user.project
                 ts.save()
     except Exception, err:
-        print err
-
+        logger.error(err)
+        
 if __name__=='__main__':
-    test()
-    
+    happyTaskCrontab()

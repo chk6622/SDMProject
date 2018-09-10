@@ -22,6 +22,8 @@ import logging
 queryUrl='happy_level_management/queryHappyLevel.html'  
 addUrl='happy_level_management/addHappyLevel.html'      
 editUrl='happy_level_management/editHappyLevel.html'   
+errorUrl='happy_level_management/errorPage.html'
+submitUrl='happy_level_management/happyLevelSubmitPage.html'
 ModelKlass=HappyLevel     
 FormKlass=HappyLevelForm  
 queryFilterParams=[]      
@@ -177,3 +179,31 @@ def getObj(filterDic):
                 yield row
     else:
         yield 'No data!'
+        
+def validTaskState(request,task_id=None):
+    bReturn=False
+    if not task_id:
+        messages.info(request,'task id error!')
+        templateDir=errorUrl
+    else:
+        taskState=TaskState.objects.filter('id=%s' % task_id)
+        if not taskState:
+            messages.info(request,'task id error!')
+            templateDir=errorUrl
+        elif taskState.task_state==taskState_choice[1][1]:  # task state is done
+            messages.info(request,'happy level have been submitted!')
+            templateDir=errorUrl
+        elif taskState.task_state==taskState_choice[2][1]:  #task state is timeout
+            messages.info(request,'time out, you can submit any more!')
+            templateDir=errorUrl
+        else:
+            bReturn=True
+    return bReturn,templateDir
+        
+def addHappyLevel(request):
+    task_id=request.GET.get('task_id',None)
+    flag, templateDir=validTaskState(request,task_id)
+    if flag:
+        templateDir=submitUrl
+        optObjForm=FormKlass()
+    return render(request, templateDir, locals()) 

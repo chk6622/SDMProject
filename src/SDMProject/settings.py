@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'Sys',
     'UserManagement',
     'HappyManagement'
@@ -204,3 +205,7 @@ LOGGING = {
         }
     }
 } 
+
+CRONJOBS = (
+    ('1 * * * *', 'HappyManagement.HappyTaskCrontab.happyTaskCrontab', '>>%s' % os.path.join(BASE_DIR, 'logs', 'crontabLog.log')),
+)
