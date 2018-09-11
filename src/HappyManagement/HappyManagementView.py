@@ -18,12 +18,14 @@ from __builtin__ import isinstance
 from django.contrib.auth.models import User
 from HappyManagement.models import *
 import logging
+from django.db import transaction
 # Create your views here.
 queryUrl='happy_level_management/queryHappyLevel.html'  
 addUrl='happy_level_management/addHappyLevel.html'      
 editUrl='happy_level_management/editHappyLevel.html'   
-errorUrl='happy_level_management/errorPage.html'
-submitUrl='happy_level_management/happyLevelSubmitPage.html'
+errorUrl='happy_level_management/happyLevelError.html'
+submitUrl='happy_level_management/submitHappyLevel.html'
+submitSuccessUrl='happy_level_management/submitHappyLevelSuccess.html'
 ModelKlass=HappyLevel     
 FormKlass=HappyLevelForm  
 queryFilterParams=[]      
@@ -77,6 +79,9 @@ def query(request):
         nextPageNum=0
         prevPageNum=0
     return render(request, queryUrl, locals())
+
+
+
 
 
 @login_required
@@ -181,29 +186,68 @@ def getObj(filterDic):
         yield 'No data!'
         
 def validTaskState(request,task_id=None):
+    '''
+    validate happy task state
+    @param request:
+    @param task_id:
+    @return: if user can submit happy level Ture or False,  forward url
+    '''
     bReturn=False
+    taskState=None
+    templateDir=None
     if not task_id:
         messages.info(request,'task id error!')
         templateDir=errorUrl
     else:
-        taskState=TaskState.objects.filter('id=%s' % task_id)
+        taskState=TaskState.objects.get(id='%s' % task_id)
         if not taskState:
             messages.info(request,'task id error!')
             templateDir=errorUrl
-        elif taskState.task_state==taskState_choice[1][1]:  # task state is done
+        elif taskState.task_state==taskState_choice[1][0]:  # task state is done
             messages.info(request,'happy level have been submitted!')
             templateDir=errorUrl
-        elif taskState.task_state==taskState_choice[2][1]:  #task state is timeout
+        elif taskState.task_state==taskState_choice[2][0]:  #task state is timeout
             messages.info(request,'time out, you can submit any more!')
             templateDir=errorUrl
         else:
             bReturn=True
-    return bReturn,templateDir
+    return bReturn,templateDir,taskState
         
 def addHappyLevel(request):
     task_id=request.GET.get('task_id',None)
-    flag, templateDir=validTaskState(request,task_id)
+    flag, templateDir,taskState=validTaskState(request,task_id)
     if flag:
         templateDir=submitUrl
         optObjForm=FormKlass()
-    return render(request, templateDir, locals()) 
+#         happyLevel=HappyLevel()
+#         happyLevel=task_id
+#         optObjForm.instance.id=task_id
+    return render(request, templateDir, locals())
+
+def submitHappyLevel(request):
+    logger.debug("'submitHappyLevel' execute method")
+    returnTemplate=None
+    optObj=None
+    uploadFileList=None
+    if request.method=='POST':
+        task_id=request.POST.get('task_id',None)
+        flag, returnTemplate,taskState=validTaskState(request,task_id)
+        if flag:
+            optObjForm=FormKlass(request.POST)
+            returnTemplate=submitSuccessUrl
+            if optObjForm.is_valid():
+                try:
+                    with transaction.atomic():
+                        optObjForm.instance.create_user=taskState.user
+                        optObjForm.instance.update_user=taskState.user
+                        optObjForm.instance.project=taskState.project
+                        optObj=optObjForm.save()
+                        taskState.task_state=taskState_choice[1][0]
+                        taskState.save()
+                        messages.info(request,'save success!')
+                except Exception,e:
+                    logger.exception(e)
+                    messages.error(request,'save fail!')
+    else:
+        returnTemplate=errorUrl
+    return render(request, returnTemplate, locals())

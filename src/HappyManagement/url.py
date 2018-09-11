@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^add/', addOrEdit), 
     url(r'^edit/', addOrEdit),
     url(r'^saveOrUpdate/', saveOrUpdate), 
+    url(r'^addHappyLevel/', addHappyLevel),
+    url(r'^submitHappyLevel/', submitHappyLevel),
     url(r'^exportData/', exportData),
 
 ]
