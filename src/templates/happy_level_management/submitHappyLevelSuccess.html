@@ -5,6 +5,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-Submit success!
+{%if messages%}
+	{%for message in messages%}
+			{{message}}
+	{%endfor%}
+{%endif%}
 </body>
 </html>

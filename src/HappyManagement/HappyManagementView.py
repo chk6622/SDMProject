@@ -196,21 +196,26 @@ def validTaskState(request,task_id=None):
     taskState=None
     templateDir=None
     if not task_id:
-        messages.info(request,'task id error!')
+        messages.info(request,'Url is invalidation!')
         templateDir=errorUrl
     else:
-        taskState=TaskState.objects.get(id='%s' % task_id)
-        if not taskState:
-            messages.info(request,'task id error!')
+        try:
+            taskState=TaskState.objects.get(id='%s' % task_id)
+            if not taskState:
+                messages.info(request,'Url is invalidation!')
+                templateDir=errorUrl
+            elif taskState.task_state==taskState_choice[1][0]:  # task state is done
+                messages.info(request,'The happy level has been submitted. You cannot submit it anymore!')
+                templateDir=errorUrl
+            elif taskState.task_state==taskState_choice[2][0]:  #task state is timeout
+                messages.info(request,'The happy level submit task has timed out. You cannot submit it now!')
+                templateDir=errorUrl
+            else:
+                bReturn=True
+        except Exception, err:
+            logger.error(err)
+            messages.info(request,'Url is invalidation!')
             templateDir=errorUrl
-        elif taskState.task_state==taskState_choice[1][0]:  # task state is done
-            messages.info(request,'happy level have been submitted!')
-            templateDir=errorUrl
-        elif taskState.task_state==taskState_choice[2][0]:  #task state is timeout
-            messages.info(request,'time out, you can submit any more!')
-            templateDir=errorUrl
-        else:
-            bReturn=True
     return bReturn,templateDir,taskState
         
 def addHappyLevel(request):
@@ -231,6 +236,7 @@ def submitHappyLevel(request):
     uploadFileList=None
     if request.method=='POST':
         task_id=request.POST.get('task_id',None)
+        
         flag, returnTemplate,taskState=validTaskState(request,task_id)
         if flag:
             optObjForm=FormKlass(request.POST)
@@ -244,10 +250,10 @@ def submitHappyLevel(request):
                         optObj=optObjForm.save()
                         taskState.task_state=taskState_choice[1][0]
                         taskState.save()
-                        messages.info(request,'save success!')
+                        messages.info(request,'Congratulations! The happy level has been submitted success! Thank you for your support.')
                 except Exception,e:
                     logger.exception(e)
-                    messages.error(request,'save fail!')
+                    messages.error(request,'Happy level submit fail!')
     else:
         returnTemplate=errorUrl
     return render(request, returnTemplate, locals())

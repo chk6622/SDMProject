@@ -5,6 +5,10 @@
 <title>happy level error</title>
 </head>
 <body>
-Error!
+{%if messages%}
+	{%for message in messages%}
+			{{message}}
+	{%endfor%}
+{%endif%}
 </body>
 </html>

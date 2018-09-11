@@ -138,6 +138,9 @@ class HappyLevelForm(forms.ModelForm):
     personal_happy_level_qry=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
     project_happy_level_qry=forms.ChoiceField(label=u'project happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
     
+    personal_happy_level=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    project_happy_level=forms.ChoiceField(label=u'project happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    
     
     class Meta:
         model=HappyLevel
