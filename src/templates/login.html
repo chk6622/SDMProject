@@ -2,31 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type='text/javascript' src='/static/scripts/jquery-1.7.2.js'></script>
-<title>软件部工作平台</title>
-<style type="text/css">
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-	background-color: #E0FBFE;
-}
-
-.STYLE1 {
-	font-size: 14px
-}
-
-#id_username {
-	width: 135px;
-	height: 12px;
-}
-
-#id_password {
-	width: 132px;
-	height: 12px;
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="Login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="Login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="Login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="Login/css/main.css">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<script src="Login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="Login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="Login/vendor/bootstrap/js/popper.js"></script>
+	<script src="Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="Login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="Login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="Login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="Login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="Login/js/main.js"></script>
 </head>
 <script language='javascript'> 
 function mysubmit()
@@ -48,33 +62,33 @@ if(error=='username')
 {
 	if(message==null)
 	{
-		message='用户名错误或为空！';
+		message='Username or password is null!';
 	}
 	else
 	{
-		message+=';用户名错误或为空！';
+		message+=';Username is wrong or null!';
 	}
 }
 if(error=='password')
 {
 	if(message==null)
 	{
-		message='密码错误或为空！';
+		message='Wrong password!';
 	}
 	else
 	{
-		message+=';密码错误或为空！';
+		message+=';Wrong password!';
 	}
 }
 if(error=='__all__')
 {
 	if(message==null)
 	{
-		message='用户名或密码错误！';
+		message='Wrong username or password!';
 	}
 	else
 	{
-		message+=';用户名或密码错误！';
+		message+=';Wrong username or password!';
 	}
 }
 {%endfor%}
@@ -89,19 +103,68 @@ $(function(){
 })
 </script>
 
-<body style="text-align: center">
-	<form method='post' action=''>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(Login/images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Sign In
+					</span>
+				</div>
+
+				<form class="login100-form validate-form" method='post' action=''>
+				    {%csrf_token%} <input type='hidden' name='next' value='{{next|escape}}' />
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass" placeholder="Enter password">
+						<span class="focus-input100"></span>
+					</div>
+
+					<!--div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Forgot Password?
+							</a>
+						</div>
+					</div-->
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!--form method='post' action=''>
 		{%csrf_token%} <input type='hidden' name='next'
 			value='{{next|escape}}' />
 		<table width="1029" border="0" cellpadding="0" cellspacing="0">
 			<tr>
-				<td height="630" align="center" background="static/images/bg.jpg"><table
+				<td height="630" align="center" background="../static/images/bg.jpg"><table
 						width="400" border="0" cellpadding="0" cellspacing="0"
 						style="margin-top: 100px">
 						<tr>
 							<td width="277"><table width="280" border="0">
 									<tr>
-										<td width="80" align="right"><span class="STYLE1">用户名：</span></td>
+										<td width="80" align="right"><span class="STYLE1">Username：</span></td>
 										<td width="190" align="left">{{form.username}}</td>
 									</tr>
 								</table></td>
@@ -112,8 +175,7 @@ $(function(){
 						<tr>
 							<td width="277"><table width="280" border="0">
 									<tr>
-										<td width="80" align="right"><span class="STYLE1">密
-												码：</span></td>
+										<td width="80" align="right"><span class="STYLE1">Password：</span></td>
 										<td width="190" align="left">{{form.password}}</td>
 									</tr>
 								</table></td>
@@ -121,6 +183,6 @@ $(function(){
 						</tr>
 					</table></td>
 			</tr>
-		</table>
+		</table-->
 </body>
 </html>
