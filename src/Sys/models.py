@@ -76,6 +76,9 @@ class MyProfile(Profile):
     project = models.ForeignKey(Project)
     nationality=models.CharField(u'Nationality',max_length=30,null=True,blank=True)
     hobby=models.CharField(u'hobby',max_length=30,null=True,blank=True)
+    is_email = models.BooleanField(
+        default=False,
+    )
  
  
 # content_type=ContentType.objects.get_for_models(User)
