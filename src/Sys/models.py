@@ -40,6 +40,7 @@ class MyProfileForm(UserChangeForm):
     project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
     nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
     hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
+    is_email = forms.BooleanField(label=u'isEmail',required=False)
 #     def __init__(self, *args, **kwargs):
 #         super(MyProfileForm, self).__init__(*args, **kwargs)
 #         self.fields.get('groups').label = 'Roles'
@@ -76,9 +77,7 @@ class MyProfile(Profile):
     project = models.ForeignKey(Project)
     nationality=models.CharField(u'Nationality',max_length=30,null=True,blank=True)
     hobby=models.CharField(u'hobby',max_length=30,null=True,blank=True)
-    is_email = models.BooleanField(
-        default=False,
-    )
+    is_email = models.BooleanField(u'isEmail',default=False)
  
  
 # content_type=ContentType.objects.get_for_models(User)

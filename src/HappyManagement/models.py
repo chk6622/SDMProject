@@ -19,9 +19,11 @@ import uuid
 
 # Create your models here.
 happyLevel_choice=[
-                    ('1',u'no happy'),
-                    ('2',u'normal'),
-                    ('3',u'happy')
+                    ('1',u'Exited'),
+                    ('2',u'Happy'),
+                    ('3',u'Normal'),
+                    ('4',u'Unhappy'),
+                    ('5',u'Angry')
                     ]
 
 taskState_choice=[
@@ -138,8 +140,8 @@ class HappyLevelForm(forms.ModelForm):
     personal_happy_level_qry=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
     project_happy_level_qry=forms.ChoiceField(label=u'project happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
     
-    personal_happy_level=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
-    project_happy_level=forms.ChoiceField(label=u'project happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    personal_happy_level=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
+    project_happy_level=forms.ChoiceField(label=u'project happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
     
     
     class Meta:

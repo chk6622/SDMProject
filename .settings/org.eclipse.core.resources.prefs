@@ -1,7 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/HappyManagement/HappyManagementView.py=utf-8
 encoding//src/HappyManagement/HappyTaskCrontab.py=utf-8
-encoding//src/HappyManagement/migrations/0001_initial.py=utf-8
 encoding//src/HappyManagement/models.py=utf-8
 encoding//src/HappyManagement/tests.py=utf-8
 encoding//src/HappyManagement/url.py=utf-8
