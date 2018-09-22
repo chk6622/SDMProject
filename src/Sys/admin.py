@@ -17,4 +17,4 @@ class ProjectAdmin(admin.ModelAdmin):
 admin.site.register(Project,ProjectAdmin)
 admin.site.register(Permission)
 
-admin.site.site_header = 'Software development methods assignment'
+admin.site.site_header = 'Team Happiness Research System'
