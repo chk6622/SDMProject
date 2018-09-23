@@ -42,7 +42,6 @@ PyHamcrest==1.9.0
 pymongo==3.7.1
 pyOpenSSL==18.0.0
 pyparsing==2.2.0
-pypiwin32==223
 pytest==3.8.0
 pytest-django==3.4.3
 python-dateutil==2.7.3
