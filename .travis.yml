@@ -1,6 +1,9 @@
 env:
   - DJANGO_VERSION=1.11.5
 language: python
+branches:
+  only:
+    - developing
 services:
   - mysql
 python:
