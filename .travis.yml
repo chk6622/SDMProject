@@ -16,5 +16,7 @@ install:
 #  - python setup.py -q install
 # -r requirements.txt
 # command to run tests
+ before_script:  
+      - mysql -e 'create database software_development_methods;' -u root
 script:
   - python src/manage.py test 
