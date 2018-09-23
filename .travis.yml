@@ -1,9 +1,15 @@
 env:
   - DJANGO_VERSION=1.11.5
 language: python
+services:
+  - mysql
 python:
   - "2.7"
 # command to install dependencies
+before_install:
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('xhy121230') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -pnew_password
+  - sudo service mysql restart
 install:
   - pip install -r requirements.txt
   - pip install -q Django==$DJANGO_VERSION
