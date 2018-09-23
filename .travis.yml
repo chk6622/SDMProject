@@ -7,4 +7,4 @@ install:
 # -r requirements.txt
 # command to run tests
 script:
-  - python manage.py 
+  - python manage.py test --settings=SDMProject.test_settings --verbosity=1
