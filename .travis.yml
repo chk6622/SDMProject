@@ -23,9 +23,11 @@ install:
   - pip install beautifulsoup4
   - pip install django-crontab
 #  - python setup.py -q install
-# -r requirements.txt
+
 # command to run tests
 before_script:  
   - mysql -e 'create database software_development_methods;' -u root
 script:
+  - python manage.py makemigrations
+  - python manage.py migrate
   - python src/manage.py test 
