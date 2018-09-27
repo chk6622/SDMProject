@@ -18,6 +18,7 @@ from __builtin__ import isinstance
 from django.contrib.auth.models import User
 from HappyManagement.models import *
 import logging
+
 from django.db import transaction
 # Create your views here.
 queryUrl='happy_level_management/queryHappyLevel.html'  
