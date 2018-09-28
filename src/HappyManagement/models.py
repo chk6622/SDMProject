@@ -11,8 +11,9 @@ from SDMProject import settings
 from django import forms
 from django.forms import widgets
 from django.forms.widgets import Widget
-from Sys.models import Project
-from django.contrib.auth.models import User
+from ProjectManagement.models import Project
+# from django.contrib.auth.models import User
+from UserManagement.models import CustomUser as User
 from numpy.ma.testutils import __all__masked
 import uuid
 

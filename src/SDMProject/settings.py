@@ -45,9 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_crontab',
     'Sys',
+    'ProjectManagement',
     'UserManagement',
     'HappyManagement'
 ]
+
+AUTH_USER_MODEL = 'UserManagement.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -209,3 +212,4 @@ LOGGING = {
 CRONJOBS = (
     ('1 * * * *', 'HappyManagement.HappyTaskCrontab.happyTaskCrontab', '>>%s' % os.path.join(BASE_DIR, 'logs', 'crontabLog.log')),
 )
+

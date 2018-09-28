@@ -1,5 +1,8 @@
 from django.test import TestCase
-from django.contrib.auth.models import User,Group
+from django.contrib.auth.models import Group
+from ProjectManagement.models import Project
+from UserManagement.models import CustomUser
+from django.contrib.auth.models import Permission
 from Sys.models import *
 
 # Create your tests here.
@@ -9,12 +12,12 @@ class SysTestCase(TestCase):
         Project.objects.create(projectName='project1')
         project=Project.objects.get(projectName='project1')
         self.assertIsNotNone(project)
-        User.objects.create(username="lion", project=project)
-        users=User.objects.filter(username="lion")
+        CustomUser.objects.create(username="lion", project=project)
+        users=CustomUser.objects.filter(username="lion")
         self.assertIsNotNone(users[0])
         self.assertEqual(users[0].username,'lion')
         users[0].delete()
-        users=User.objects.filter(**{r'username':'lion'})
+        users=CustomUser.objects.filter(**{r'username':'lion'})
         self.assertIsNotNone(users)
         self.assertEqual(len(users),0)
         Permission.objects.create(name='p1',content_type_id='1')

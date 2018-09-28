@@ -16,13 +16,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from __builtin__ import isinstance
 from django.contrib.auth.models import User
-from UserManagement.models import UserManageForm
+from UserManagement.models import CustomUser,UserManageForm
 import logging
 # Create your views here.
 queryUrl='user_management/queryUser.html'  #查询模板
 addUrl='user_management/addUser.html'      #添加模板
 editUrl='user_management/editUser.html'    #编辑模板
-ModelKlass=User     #模型类
+ModelKlass=CustomUser     #模型类
 FormKlass=UserManageForm  #表单类
 queryFilterParams=[]      #数据查询参数列表
 queryFilterParams.append(('first_name__contains','first_name_qry'))
