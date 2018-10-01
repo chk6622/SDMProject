@@ -64,13 +64,37 @@ class UserManageForm(forms.ModelForm):
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class CustomUserCreationForm(UserCreationForm):
-
+    project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
+    nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
+    hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
+    is_email = forms.BooleanField(label=u'isEmail',required=False)
     class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields='__all__'
+        fields=('project','nationality','hobby','is_email')
 
 class CustomUserChangeForm(UserChangeForm):
 
-    class Meta:
+    
+    project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
+#     nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
+#     hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
+#     is_email = forms.BooleanField(label=u'isEmail',required=False)
+    
+    class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields='__all__'
+        fields=('project','nationality','hobby','is_email')
+ 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
