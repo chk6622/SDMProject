@@ -32,4 +32,6 @@ script:
   - python src/manage.py makemigrations ProjectManagement
   - python src/manage.py makemigrations HappyManagement
   - python src/manage.py migrate  
-  - python src/manage.py test 
+  - python src/manage.py test HappyManagement
+  - python src/manage.py test ProjectManagement
+  - python src/manage.py test HappyManagement
