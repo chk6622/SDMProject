@@ -6,19 +6,19 @@
 	     var dd = now.getDate() , mt = now.getMonth() + 1 , yy = y2k(now.getYear()) , weekVal = now.getDay();
 
 	        if (weekVal==0)
-	       msg1="sunday";
+	       msg1="SUN";
 	    else if (weekVal==1)
-	        msg1="monday"; 
+	        msg1="MON"; 
 	    else if (weekVal==2)
-	        msg1="tuesday"; 
+	        msg1="TUE"; 
 	    else if (weekVal==3)
-	            msg1="wednesday"; 
+	            msg1="WED"; 
 	    else if (weekVal==4)
-	            msg1="thursday"; 
+	            msg1="THU"; 
 	    else if (weekVal==5)
-	            msg1="friday"; 
+	            msg1="FRI"; 
 	    else if (weekVal==6)
-	            msg1="saturday"; 
+	            msg1="SAT"; 
 
 	   document.write(yy+"-"+mt+"-"+dd+" "+msg1);
 	}

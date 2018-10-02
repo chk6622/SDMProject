@@ -28,9 +28,9 @@ happyLevel_choice=[
                     ]
 
 taskState_choice=[
-    ('1','undone'),
-    ('2','done'),
-    ('3','timeout')
+    ('1','Undone'),
+    ('2','Done'),
+    ('3','Timeout')
     ]
 
 def getChoice(choiceList,hasBlank=False):
@@ -68,9 +68,9 @@ class TaskState(models.Model):
     id= models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     task_batch=models.ForeignKey(TaskBatch,null=True,blank=True)
     user=models.ForeignKey(User,null=True,blank=True)
-    email=models.CharField(u'email',max_length=100,null=True,blank=True)
+    email=models.CharField(u'Email',max_length=100,null=True,blank=True)
     project=models.ForeignKey(Project,null=True,blank=True)
-    task_state=models.CharField(u'task state level',max_length=50,choices=taskState_choice,null=True,blank=True)
+    task_state=models.CharField(u'Task state level',max_length=50,choices=taskState_choice,null=True,blank=True)
     
     class Meta:
         ordering=[]
@@ -79,10 +79,21 @@ class TaskState(models.Model):
                     ('export_taskstate',u'can export task state'),
                      )
 
-class HappyLevel(BaseModels.BaseModel):
-    
-    personal_happy_level=models.CharField(u'personal happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
-    project_happy_level=models.CharField(u'project happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
+class TaskStateForm(forms.ModelForm):
+    email_qry=forms.CharField(label=u'Email',max_length=50, required=False)
+    task_state_qry=forms.ChoiceField(label=u'Task state',help_text=u'',required=False,choices=getChoice(taskState_choice,True),widget=forms.Select)
+    project_qry=forms.ModelChoiceField(label=u'Project',queryset=Project.objects.all(),required=False)
+    b_create_time=forms.DateField(label=u'Create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
+    e_create_time=forms.DateField(label=u'To create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
+    class Meta:
+        model=TaskState
+        fields='__all__'
+        initial={}
+
+
+class HappyLevel(BaseModels.BaseModel):    
+    personal_happy_level=models.CharField(u'Personal happy level',max_length=50,choices=happyLevel_choice,null=True,blank=False)
+    project_happy_level=models.CharField(u'Project happy level',max_length=50,choices=happyLevel_choice,null=True,blank=False)
     project=models.ForeignKey(Project,null=True,blank=True)
     create_user=models.ForeignKey(User,null=True,blank=True)
     # update_user should be User Foreign Key, but I have to set related_name, because I already have one User FK in model
@@ -131,18 +142,18 @@ class HappyLevel(BaseModels.BaseModel):
         return attrlabels,rList
         
 class HappyLevelForm(forms.ModelForm):
-    id=forms.CharField(label=u'id', required=False,widget=forms.HiddenInput)
-    b_create_time=forms.DateField(label=u'create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
-    e_create_time=forms.DateField(label=u'to create time',help_text=u' yyyy-MM-dd',required=False)
+    id=forms.CharField(label=u'Id', required=False,widget=forms.HiddenInput)
+    b_create_time=forms.DateField(label=u'Create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
+    e_create_time=forms.DateField(label=u'To create time',help_text=u' yyyy-MM-dd',required=False)
     
-    create_user_qry=forms.CharField(label=u'create user',help_text=u'',required=False)
-    project_qry=forms.ChoiceField(label=u'project',help_text=u'',required=False,choices=[],widget=forms.Select)
+    create_user_qry=forms.CharField(label=u'Create user',help_text=u'',required=False)
+    project_qry=forms.ChoiceField(label=u'Project',help_text=u'',required=False,choices=[],widget=forms.Select)
     
-    personal_happy_level_qry=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
-    project_happy_level_qry=forms.ChoiceField(label=u'project happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    personal_happy_level_qry=forms.ChoiceField(label=u'Personal happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    project_happy_level_qry=forms.ChoiceField(label=u'Project happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
     
-    personal_happy_level=forms.ChoiceField(label=u'personal happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
-    project_happy_level=forms.ChoiceField(label=u'project happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
+    personal_happy_level=forms.ChoiceField(label=u'Personal happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
+    project_happy_level=forms.ChoiceField(label=u'Project happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
     
     
     class Meta:
