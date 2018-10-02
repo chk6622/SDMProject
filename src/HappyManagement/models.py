@@ -79,8 +79,19 @@ class TaskState(models.Model):
                     ('export_taskstate',u'can export task state'),
                      )
 
-class HappyLevel(BaseModels.BaseModel):
-    
+class TaskStateForm(forms.ModelForm):
+    email_qry=forms.CharField(label=u'email',max_length=50, required=False)
+    task_state_qry=forms.ChoiceField(label=u'task state',help_text=u'',required=False,choices=getChoice(taskState_choice,True),widget=forms.Select)
+    project_qry=forms.ModelChoiceField(label=u'project',queryset=Project.objects.all(),required=False)
+    b_create_time=forms.DateField(label=u'create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
+    e_create_time=forms.DateField(label=u'to create time',help_text=u' yyyy-MM-dd',required=False,input_formats=(settings.GLOBAL_DATE_FORMAT,),widget=widgets.DateInput(format=settings.GLOBAL_DATE_FORMAT,attrs={'size':'25'}))
+    class Meta:
+        model=TaskState
+        fields='__all__'
+        initial={}
+
+
+class HappyLevel(BaseModels.BaseModel):    
     personal_happy_level=models.CharField(u'personal happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
     project_happy_level=models.CharField(u'project happy level',max_length=50,choices=happyLevel_choice,null=True,blank=True)
     project=models.ForeignKey(Project,null=True,blank=True)

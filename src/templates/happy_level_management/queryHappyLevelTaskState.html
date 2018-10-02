@@ -1,0 +1,143 @@
+{% extends 'base_templates/query_page/queryTable.html' %} 
+{%block query_url%}/HappyManagement/queryTaskState{%endblock%} {%block queryParam%}
+<tr>
+	<td width="98%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF" colspan='6'>
+		<div align="left">
+			&nbsp;&nbsp;<span class="STYLE3">Happy level task state query</span>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1">{{queryForm.email_qry.label_tag}}</span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
+		<div align="left">
+			<span class="STYLE1">{{queryForm.email_qry}}</span>
+		</div>
+	</td>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1">{{queryForm.b_create_time.label_tag}}</span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='3'>
+		<div align="left">
+			<span class="STYLE1">{{queryForm.b_create_time}} - {{queryForm.e_create_time}}</span>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1">{{queryForm.task_state_qry.label_tag}}</span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
+		<div align="left">
+			<span class="STYLE1">{{queryForm.task_state_qry}}</span>
+		</div>
+	</td>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1">{{queryForm.project_qry.label_tag}}</span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
+		<div align="left">
+			<span class="STYLE1">{{queryForm.project_qry}}</span>
+		</div>
+	</td>
+	<td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF">
+		<div align="center">
+			<span class="STYLE1"></span>
+		</div>
+	</td>
+	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
+		<div align="left">
+			<span class="STYLE1"></span>
+		</div>
+	</td>
+</tr>
+{%endblock%} 
+{%block list_name%}
+ 	user information table
+{% endblock%} 
+{%block add_button%} {%endblock%} 
+{%block export_button%} 
+	{%if perms.HappyManagement.export_happyleveltaskstate%}
+		<table width="90%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="STYLE1"><div align="center">
+						<img src="/static/tab/images/33.gif" width="14" height="14" />
+					</div></td>
+				<td class="STYLE1">
+					<div align="center">
+						<a href='/HappyManagement/exportTaskStateData/'>export</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	{%endif%} 
+{%endblock%} 
+{%block table_title%}
+<tr>
+	<td width="30%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF"><div align="center">
+			<span class="STYLE1">project</span>
+		</div></td>
+	<td width="20%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF"><div align="center">
+			<span class="STYLE1">create time</span>
+		</div></td>
+	<td width="20%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF"><div align="center">
+			<span class="STYLE1">personal member</span>
+		</div></td>
+	<td width="20%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF"><div align="center">
+			<span class="STYLE1">happy level task state</span>
+		</div></td>
+	<!-- td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF" class="STYLE1"><div align="center">process</div></td> -->
+</tr>
+{%endblock%} 
+{%block table_body%} 
+{% if queryResultList %}
+	{%for optObj in queryResultList%}
+		<tr>
+			<td height="30" bgcolor="#FFFFFF"><div align="center">
+					<span class="STYLE1">{{optObj.project}}</span>
+				</div></td>
+			<td height="20" bgcolor="#FFFFFF"><div align="center">
+					<span class="STYLE1">{{optObj.task_batch.create_time|date:'Y-m-d'}}</span>
+				</div></td>
+			<td height="20" bgcolor="#FFFFFF"><div align="center">
+					<span class="STYLE1">{{optObj.user}}</span>
+				</div></td>
+			<td height="20" bgcolor="#FFFFFF"><div align="center">
+					<span class="STYLE1">{{optObj.get_task_state_display}}</span>
+				</div></td>
+			<!-- td height="10" bgcolor="#FFFFFF">
+				<div align="center">
+					<span class="STYLE4"> 
+					{%if perms.HappyManagement.change_happylevel%} 
+						<img src="/static/tab/images/edt.gif" width="16" height="16" />
+							<a href='/HappyManagement/edit/?id={{optObj.id}}'>edit</a>
+						</span>
+					{%endif%}
+				</div>
+			</td> -->
+		</tr>
+	{%endfor%} 
+{%endif%} 
+{%endblock%}
+

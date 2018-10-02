@@ -37,7 +37,7 @@ class CustomUser(AbstractUser):
     
     class Meta:
         permissions = (
-            ("query_user", "Can query user"),
+            ("query_customuser", "Can query user"),
         )
 
 class UserManageForm(forms.ModelForm):
@@ -64,10 +64,10 @@ class UserManageForm(forms.ModelForm):
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class CustomUserCreationForm(UserCreationForm):
-    project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
-    nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
-    hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
-    is_email = forms.BooleanField(label=u'isEmail',required=False)
+#     project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
+#     nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
+#     hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
+#     is_email = forms.BooleanField(label=u'isEmail',required=False)
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields=('project','nationality','hobby','is_email')
@@ -75,12 +75,12 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
 
     
-    project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
+#     project = forms.ModelChoiceField(queryset=Project.objects.filter(('is_active','1')),)
 #     nationality=forms.CharField(label=u'Nationality',max_length=30,required=False)
 #     hobby=forms.CharField(label=u'Hobby',max_length=30,required=False)
 #     is_email = forms.BooleanField(label=u'isEmail',required=False)
     
-    class Meta(UserCreationForm.Meta):
+    class Meta:
         model = CustomUser
         fields=('project','nationality','hobby','is_email')
  
