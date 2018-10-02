@@ -6,8 +6,8 @@ from django.db import models
 # Create your models here.
 
 class Project(models.Model):
-    projectName = models.CharField(max_length=30)
-    projectDescribe=models.TextField()
+    projectName = models.CharField(u'Project Name', max_length=30, null=True,blank=False)
+    projectDescribe=models.TextField(u'Project Describe', max_length=300, null=True,blank=True)
     is_active = models.BooleanField(
         default=True,
         help_text=(

@@ -29,8 +29,9 @@ class CustomUser(AbstractUser):
     # add additional fields in here
     project = models.ForeignKey(Project,null=True,blank=True)
     nationality=models.CharField(u'Nationality',max_length=30,null=True,blank=True)
-    hobby=models.CharField(u'hobby',max_length=30,null=True,blank=True)
-    is_email = models.BooleanField(u'isEmail',default=False)
+    hobby=models.CharField(u'Hobby',max_length=30,null=True,blank=True)
+    is_email = models.BooleanField(u'Whether sending email or not',default=False)
+    slack_account=models.CharField(u'Slack account',max_length=100,null=True,blank=True)
 
     def __str__(self):
         return self.username
@@ -41,21 +42,21 @@ class CustomUser(AbstractUser):
         )
 
 class UserManageForm(forms.ModelForm):
-    id=forms.CharField(label=u'id', required=False,widget=forms.HiddenInput)
-    first_name=forms.CharField(label=u'first_name',max_length=50, required=False)
-    first_name_qry=forms.CharField(label=u'first_name',max_length=50, required=False)
-    last_name=forms.CharField(label=u'last_name',max_length=50, required=False)
-    last_name_qry=forms.CharField(label=u'last_name',max_length=50, required=False)
-    email=forms.CharField(label=u'email',max_length=50, required=False)
-    email_qry=forms.CharField(label=u'email',max_length=50, required=False)
-    nationality=forms.CharField(label=u'nationality',max_length=50, required=False)
-    nationality_qry=forms.CharField(label=u'nationality',max_length=50, required=False)
-    hobby=forms.CharField(label=u'hobby',max_length=50, required=False)
-    hobby_qry=forms.CharField(label=u'hobby',max_length=50, required=False)
+    id=forms.CharField(label=u'Id', required=False,widget=forms.HiddenInput)
+    first_name=forms.CharField(label=u'First name',max_length=50, required=False)
+    first_name_qry=forms.CharField(label=u'First name',max_length=50, required=False)
+    last_name=forms.CharField(label=u'Last name',max_length=50, required=False)
+    last_name_qry=forms.CharField(label=u'Last name',max_length=50, required=False)
+    email=forms.CharField(label=u'Email',max_length=50, required=False)
+    email_qry=forms.CharField(label=u'Email',max_length=50, required=False)
+    nationality=forms.CharField(label=u'Nationality',max_length=50, required=False)
+    nationality_qry=forms.CharField(label=u'Nationality',max_length=50, required=False)
+    hobby=forms.CharField(label=u'Hobby',max_length=50, required=False)
+    hobby_qry=forms.CharField(label=u'Hobby',max_length=50, required=False)
     
     class Meta:
         model=CustomUser
-        fields=('id','first_name','last_name','email','nationality','hobby')     
+        fields=('id','first_name','last_name','email','nationality','hobby','slack_account')     
         initial={}
         
 
