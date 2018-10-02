@@ -24,6 +24,4 @@ class ProjectTestCase(TestCase):
         projects=Project.objects.filter(projectName='project2')
         self.assertIsNone(projects)
         self.assertEqual(len(projects), 1)
-		
-		
-		 
+
