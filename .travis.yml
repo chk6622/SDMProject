@@ -3,7 +3,7 @@ env:
 language: python
 branches:
   only:
-    - feature
+feature
 services:
   - mysql
 python:
@@ -24,6 +24,8 @@ install:
   - pip install django-crontab
 #  - python setup.py -q install
 
+-r requirements.txt
+
 # command to run tests
 before_script:  
   - mysql -e 'create database software_development_methods;' -u root
@@ -35,3 +37,4 @@ script:
   - python src/manage.py test HappyManagement
   - python src/manage.py test ProjectManagement
   - python src/manage.py test HappyManagement
+  - python src/manage.py test 
