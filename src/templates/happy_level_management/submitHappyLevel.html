@@ -1,62 +1,222 @@
-{%extends 'base_templates/add_edit_page/addOrEditBase.html'%} 
-{%block title%}submit happy level{%endblock%} 
-{%block saveOrUpdateForm%}
-<form method='post' action='/HappyManagement/submitHappyLevel/'
-	enctype='multipart/form-data'>
-	{%csrf_token%}<input type="hidden" name='task_id' value='{{task_id}}'/><br>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-		<tr>
-			<td width="20%">&nbsp;</td>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="1"
-					bgcolor="b5d6e6">
+<html>
+<head>
+<title>Happiness Level Submission</title>
+<link rel="stylesheet" type="text/css" href="/static/Login/vendor/bootstrap/css/bootstrap.min.css">
+<script type='text/javascript' src='/static/scripts/jquery-1.7.2.js'></script>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
 
-					<tr>
-						<td width="98%" height="22" bgcolor="#CDEAF8" colspan='2'>
-							<div align="left">
-								&nbsp;&nbsp;<span class="STYLE3">Add happy level</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="25%" height="22" bgcolor="#E9F6FC">
-							<div align="center">
-								<span class="STYLE1">{{optObjForm.personal_happy_level.label_tag}}</span>&nbsp;
-							</div>
-						</td>
-						<td width="75%" height="22" bgcolor="#FFFFFF">
-							<div align="left">
-								&nbsp;<span class="STYLE1">{{optObjForm.personal_happy_level}}<span
-									class="helptext">{{optObjForm.personal_happy_level.help_text}}</span>{{optObjForm.personal_happy_level.errors}}
-								</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="10%" height="22" bgcolor="#E9F6FC">
-							<div align="center">
-								<span class="STYLE1">{{optObjForm.project_happy_level.label_tag}}</span>&nbsp;
-							</div>
-						</td>
-						<td width="15%" height="22" bgcolor="#FFFFFF">
-							<div align="left">
-								&nbsp;<span class="radio">{{optObjForm.project_happy_level}}<span
-									class="helptext">{{optObjForm.project_happy_level.help_text}}</span></span>{{optObjForm.project_happy_level.errors}}
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="100%" height="22" bgcolor="#FFFFFF" colspan='2'>
-							<div align="center">
-								<span class="STYLE1"><input type='submit' value='submit' /></span>
-							</div>
-						</td>
-					</tr>
-				</table> <span class="notify"> *&nbsp;is required field<br>
-			</span>
-			</td>
-			<td width="20%">&nbsp;</td>
-		</tr>
-	</table>
+.STYLE1 {
+	font-size: 12px
+}
+
+.STYLE3 {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.STYLE4 {
+	color: #03515d;
+	font-size: 12px;
+}
+
+.mouseHover {
+	cursor: pointer;
+}
+-->
+</style>
+<script type="text/javascript">
+$(function(){
+	$('#submit_button').click(function(){  
+		if(confirm('Do you want to submit your happy level?'))
+		{
+			document.getElementById("happy_level_form").submit();
+		}
+	});
+	$('#team_excited_jpg').click(function(){
+		$('#id_project_happy_level_1').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#team_happy_jpg').click(function(){
+		$('#id_project_happy_level_2').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#team_normal_jpg').click(function(){
+		$('#id_project_happy_level_3').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#team_unhappy_jpg').click(function(){
+		$('#id_project_happy_level_4').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#team_angry_jpg').click(function(){
+		$('#id_project_happy_level_5').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	
+	$('#self_excited_jpg').click(function(){
+		$('#id_personal_happy_level_1').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#self_happy_jpg').click(function(){
+		$('#id_personal_happy_level_2').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#self_normal_jpg').click(function(){
+		$('#id_personal_happy_level_3').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#self_unhappy_jpg').click(function(){
+		$('#id_personal_happy_level_4').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+	$('#self_angry_jpg').click(function(){
+		$('#id_personal_happy_level_5').attr("checked",'checked');
+	}).hover(function(){
+		$(this).addClass('mouseHover')
+	},function(){
+		$(this).removeClass('mouseHover')
+	});
+});
+</script>
+</head>
+<body>
+<form method='post' action='/HappyManagement/submitHappyLevel/' enctype='multipart/form-data' id='happy_level_form'>
+{%csrf_token%}<input type="hidden" name='task_id' value='{{task_id}}'/><br>
+  <!--div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">How are you feeling?</h1>
+     <p class="lead">We would like to know how are you feeling about yourself and your team.</p>
+   </div>
+</div-->
+<div class="alert alert-primary" role="alert">
+  How are you feeling? We would like to know how are you feeling about yourself and your team.
+</div>
+<div class="container">
+  <!-- Content here -->
+<br>
+  <div class="row">
+    <div class="col-2" >
+       <h1 class="display-6">Team Happiness</h1>
+    </div>
+    <div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/ExcitedEmoji.jpg" id='team_excited_jpg'>
+	   <center>
+	   <!-- input type="radio" name="project_happy_level" id="id_project_happy_level_0" value="male" />Exited<br> -->
+	   <input type="radio" name="project_happy_level" value="1" required id="id_project_happy_level_1" checked/>Exited<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/happy.png" id='team_happy_jpg'>
+	   <center>
+	   <!-- input type="radio" name="selfhappiness" value="male"/> Happy<br> -->
+	   <input type="radio" name="project_happy_level" value="2" required id="id_project_happy_level_2" />Happy<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/normal.jpg" id='team_normal_jpg'>
+	   <center>
+	   <!-- input type="radio" name="selfhappiness" value="male"/> Normal<br> -->
+	   <input type="radio" name="project_happy_level" value="3" required id="id_project_happy_level_3" />Normal<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/Unhappy.png" id='team_unhappy_jpg'>
+	   <center>
+	   <!-- input type="radio" name="selfhappiness" value="male"/> Unhappy<br> -->
+	   <input type="radio" name="project_happy_level" value="4" required id="id_project_happy_level_4" />Unhappy<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/angry.jpg" id='team_angry_jpg'>
+	   <center>
+	   <!-- input type="radio" name="selfhappiness" value="male"/>Angry<br> -->
+	   <input type="radio" name="project_happy_level" value="5" required id="id_project_happy_level_5" />Angry<br>
+	   </center>
+    </div>
+  </div>
+  <br>
+  <hr class="my-4">
+  <br>
+  <div class="row">
+    <div class="col-2" >
+       <h1 class="display-6">Self Happiness</h1>
+    </div>
+    <div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/ExcitedEmoji.jpg" id='self_excited_jpg'>
+	   <center>
+	   <!-- input type="radio" name="teamhappiness" value="male" />Exited<br> -->
+	   <input type="radio" name="personal_happy_level" value="1" required id="id_personal_happy_level_1" checked/>Exited<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/happy.png" id='self_happy_jpg'>
+	   <center>
+	   <!-- input type="radio" name="teamhappiness" value="male"/> Happy<br> -->
+	   <input type="radio" name="personal_happy_level" value="2" required id="id_personal_happy_level_2" />Happy<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/normal.jpg" id='self_normal_jpg'>
+	   <center>
+	   <!--  input type="radio" name="teamhappiness" value="male"/> Normal<br-->
+	   <input type="radio" name="personal_happy_level" value="3" required id="id_personal_happy_level_3" />Normal<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/Unhappy.png" id='self_unhappy_jpg'>
+	   <center>
+	   <!-- input type="radio" name="teamhappiness" value="male"/> Unhappy<br-->
+	   <input type="radio" name="personal_happy_level" value="4" required id="id_personal_happy_level_4" />Unhappy<br>
+	   </center>
+    </div>
+	<div class="col-2">
+      <image style="width:100%" src="/static/Login/images/emoji/angry.jpg" id='self_angry_jpg'>
+	   <center>
+	   <!-- input type="radio" name="teamhappiness" value="male"/>Angry<br> -->
+	   <input type="radio" name="personal_happy_level" value="5" required id="id_personal_happy_level_5" />Angry<br>
+	   </center>
+    </div>
+ 
+  </div>
+   <br>
+  <hr class="my-4">
+
+  <button style="float:right" type="button" class="btn btn-primary" id='submit_button'><h1>Submit</h1></button>
+</div>
 </form>
-{%endblock%}
+</body>
+</html>

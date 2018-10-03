@@ -87,7 +87,7 @@
 			<span class="STYLE1">Hobby</span>
 		</div></td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
-		bgcolor="#FFFFFF" class="STYLE1"><div align="center">process</div></td>
+		bgcolor="#FFFFFF" class="STYLE1"><div align="center">Process</div></td>
 </tr>
 {%endblock%} 
 {%block table_body%} 
@@ -112,7 +112,7 @@
 			<td height="20" bgcolor="#FFFFFF">
 				<div align="center">
 					<span class="STYLE4"> 
-					{%if perms.UserManagement.change_userinformation%} 
+					{%if perms.UserManagement.change_customuser%} 
 						<img src="/static/tab/images/edt.gif" width="16" height="16" />
 							<a href='/UserManagement/edit/?id={{optObj.id}}'>edit</a>
 						</span>

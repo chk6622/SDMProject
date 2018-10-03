@@ -18,6 +18,7 @@ from __builtin__ import isinstance
 from django.contrib.auth.models import User
 from HappyManagement.models import *
 import logging
+
 from django.db import transaction
 # Create your views here.
 queryUrl='happy_level_management/queryHappyLevel.html'  
@@ -250,7 +251,7 @@ def submitHappyLevel(request):
                         optObj=optObjForm.save()
                         taskState.task_state=taskState_choice[1][0]
                         taskState.save()
-                        messages.info(request,'Congratulations! The happy level has been submitted success! Thank you for your support.')
+#                         messages.info(request,'Congratulations! The happy level has been submitted success! Thank you for your support.')
                 except Exception,e:
                     logger.exception(e)
                     messages.error(request,'Happy level submit fail!')

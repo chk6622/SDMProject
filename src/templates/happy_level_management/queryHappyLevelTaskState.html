@@ -1,10 +1,10 @@
 {% extends 'base_templates/query_page/queryTable.html' %} 
-{%block query_url%}/HappyManagement/query{%endblock%} {%block queryParam%}
+{%block query_url%}/HappyManagement/queryTaskState{%endblock%} {%block queryParam%}
 <tr>
 	<td width="98%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF" colspan='6'>
 		<div align="left">
-			&nbsp;&nbsp;<span class="STYLE3">Happy level query</span>
+			&nbsp;&nbsp;<span class="STYLE3">Happy level task state query</span>
 		</div>
 	</td>
 </tr>
@@ -12,12 +12,12 @@
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF">
 		<div align="center">
-			<span class="STYLE1">{{queryForm.project_qry.label_tag}}</span>
+			<span class="STYLE1">{{queryForm.email_qry.label_tag}}</span>
 		</div>
 	</td>
 	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
 		<div align="left">
-			<span class="STYLE1">{{queryForm.project_qry}}</span>
+			<span class="STYLE1">{{queryForm.email_qry}}</span>
 		</div>
 	</td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
@@ -36,23 +36,23 @@
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF">
 		<div align="center">
-			<span class="STYLE1">{{queryForm.project_happy_level_qry.label_tag}}</span>
+			<span class="STYLE1">{{queryForm.task_state_qry.label_tag}}</span>
 		</div>
 	</td>
 	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
 		<div align="left">
-			<span class="STYLE1">{{queryForm.project_happy_level_qry}}</span>
+			<span class="STYLE1">{{queryForm.task_state_qry}}</span>
 		</div>
 	</td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF">
 		<div align="center">
-			<span class="STYLE1">{{queryForm.personal_happy_level_qry.label_tag}}</span>
+			<span class="STYLE1">{{queryForm.project_qry.label_tag}}</span>
 		</div>
 	</td>
 	<td width="15%" height="22" bgcolor="#FFFFFF" colspan='1'>
 		<div align="left">
-			<span class="STYLE1">{{queryForm.personal_happy_level_qry}}</span>
+			<span class="STYLE1">{{queryForm.project_qry}}</span>
 		</div>
 	</td>
 	<td width="10%" height="22" background="/static/tab/images/bg.gif"
@@ -73,7 +73,7 @@
 {% endblock%} 
 {%block add_button%} {%endblock%} 
 {%block export_button%} 
-	{%if perms.HappyManagement.export_happylevel%}
+	{%if perms.HappyManagement.export_happyleveltaskstate%}
 		<table width="90%" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="STYLE1"><div align="center">
@@ -81,7 +81,7 @@
 					</div></td>
 				<td class="STYLE1">
 					<div align="center">
-						<a href='/HappyManagement/exportData/'>export</a>
+						<a href='/HappyManagement/exportTaskStateData/'>export</a>
 					</div>
 				</td>
 			</tr>
@@ -100,14 +100,14 @@
 		</div></td>
 	<td width="20%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Personal happy level</span>
+			<span class="STYLE1">Personal member</span>
 		</div></td>
 	<td width="20%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Project happy level</span>
+			<span class="STYLE1">Happy level task state</span>
 		</div></td>
-	<td width="10%" height="22" background="/static/tab/images/bg.gif"
-		bgcolor="#FFFFFF" class="STYLE1"><div align="center">Process</div></td>
+	<!-- td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF" class="STYLE1"><div align="center">process</div></td> -->
 </tr>
 {%endblock%} 
 {%block table_body%} 
@@ -118,15 +118,15 @@
 					<span class="STYLE1">{{optObj.project}}</span>
 				</div></td>
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.create_time|date:'Y-m-d'}}</span>
+					<span class="STYLE1">{{optObj.task_batch.create_time|date:'Y-m-d'}}</span>
 				</div></td>
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.get_personal_happy_level_display}}</span>
+					<span class="STYLE1">{{optObj.user}}</span>
 				</div></td>
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
-					<span class="STYLE1">{{optObj.get_project_happy_level_display}}</span>
+					<span class="STYLE1">{{optObj.get_task_state_display}}</span>
 				</div></td>
-			<td height="10" bgcolor="#FFFFFF">
+			<!-- td height="10" bgcolor="#FFFFFF">
 				<div align="center">
 					<span class="STYLE4"> 
 					{%if perms.HappyManagement.change_happylevel%} 
@@ -135,7 +135,7 @@
 						</span>
 					{%endif%}
 				</div>
-			</td>
+			</td> -->
 		</tr>
 	{%endfor%} 
 {%endif%} 

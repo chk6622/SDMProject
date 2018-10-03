@@ -15,7 +15,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SDMProject.settings")
 django.setup()
 
 from HappyManagement.models import TaskBatch,TaskState,taskState_choice
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from UserManagement.models import CustomUser as User
 from django.db import transaction
 import logging
 
