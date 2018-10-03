@@ -22,6 +22,6 @@ class ProjectTestCase(TestCase):
         self.assertGreater(len(projects), 0)
         projects[0].delete()
         projects=Project.objects.filter(projectName='project2')
-        self.assertIsNotNone(projects)
-        self.assertEqual(len(projects), 0)
-        
+        self.assertIsNone(projects)
+        self.assertEqual(len(projects), 1)
+
