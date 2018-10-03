@@ -69,6 +69,7 @@ class TaskState(models.Model):
     task_batch=models.ForeignKey(TaskBatch,null=True,blank=True)
     user=models.ForeignKey(User,null=True,blank=True)
     email=models.CharField(u'Email',max_length=100,null=True,blank=True)
+    slack_account=models.CharField(u'Slack account',max_length=100,null=True,blank=True)
     project=models.ForeignKey(Project,null=True,blank=True)
     task_state=models.CharField(u'Task state level',max_length=50,choices=taskState_choice,null=True,blank=True)
     
