@@ -241,7 +241,7 @@ def submitHappyLevel(request):
         flag, returnTemplate,taskState=validTaskState(request,task_id)
         if flag:
             optObjForm=FormKlass(request.POST)
-            returnTemplate=submitSuccessUrl
+            returnTemplate=submitUrl
             if optObjForm.is_valid():
                 try:
                     with transaction.atomic():
@@ -251,10 +251,14 @@ def submitHappyLevel(request):
                         optObj=optObjForm.save()
                         taskState.task_state=taskState_choice[1][0]
                         taskState.save()
+                        returnTemplate=submitSuccessUrl
 #                         messages.info(request,'Congratulations! The happy level has been submitted success! Thank you for your support.')
                 except Exception,e:
                     logger.exception(e)
                     messages.error(request,'Happy level submit fail!')
+#             else:
+#                 messages.error(request,'Team Happiness and Self Happiness are required field')
+#                 returnTemplate=submitUrl
     else:
         returnTemplate=errorUrl
     return render(request, returnTemplate, locals())

@@ -28,87 +28,129 @@ body {
 
 .mouseHover {
 	cursor: pointer;
+	font-size: 30px; 
+	font-weight: bold;
+	color: red;
+	border:1px solid #000
+}
+.selectRadio {
+	cursor: pointer;
+	font-size: 25px;
+	color: red;
 }
 -->
 </style>
 <script type="text/javascript">
 $(function(){
-	$('#submit_button').click(function(){  
-		if(confirm('Do you want to submit your happy level?'))
+	$('#submit_button').click(function(){
+		if(!$(':radio[name=project_happy_level]:checked').length)
+		{
+			alert('Team Happiness is required field!')
+		}
+		else if(!$(':radio[name=personal_happy_level]:checked').length)
+		{
+			alert('Self Happiness is required field!')
+		}
+		else if(confirm('Do you want to submit your happy level?'))
 		{
 			document.getElementById("happy_level_form").submit();
 		}
 	});
+	/*$(':radio').check(function(){
+		$(this).parent().addClass('selectRadio')
+	})*/
+	//$(':checked').parent().addClass('selectRadio');
+	//$(':unchecked').parent().removeClass('selectRadio');
 	$('#team_excited_jpg').click(function(){
 		$('#id_project_happy_level_1').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#team_happy_jpg').click(function(){
 		$('#id_project_happy_level_2').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#team_normal_jpg').click(function(){
 		$('#id_project_happy_level_3').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#team_unhappy_jpg').click(function(){
 		$('#id_project_happy_level_4').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#team_angry_jpg').click(function(){
 		$('#id_project_happy_level_5').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	
 	$('#self_excited_jpg').click(function(){
 		$('#id_personal_happy_level_1').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#self_happy_jpg').click(function(){
 		$('#id_personal_happy_level_2').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#self_normal_jpg').click(function(){
 		$('#id_personal_happy_level_3').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#self_unhappy_jpg').click(function(){
 		$('#id_personal_happy_level_4').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 	$('#self_angry_jpg').click(function(){
 		$('#id_personal_happy_level_5').attr("checked",'checked');
+		$(this).parent().siblings().removeClass('selectRadio')
+		$(this).parent().addClass('selectRadio')
 	}).hover(function(){
-		$(this).addClass('mouseHover')
+		$(this).parent().addClass('mouseHover')
 	},function(){
-		$(this).removeClass('mouseHover')
+		$(this).parent().removeClass('mouseHover')
 	});
 });
 </script>
@@ -121,22 +163,24 @@ $(function(){
     <h1 class="display-4">How are you feeling?</h1>
      <p class="lead">We would like to know how are you feeling about yourself and your team.</p>
    </div>
-</div-->
+</div>
 <div class="alert alert-primary" role="alert">
   How are you feeling? We would like to know how are you feeling about yourself and your team.
-</div>
+</div-->
 <div class="container">
   <!-- Content here -->
+
+<h5 class="alert alert-primary">Please select the emoji that represents how happy you think the team about the work</h5>
 <br>
   <div class="row">
     <div class="col-2" >
-       <h1 class="display-6">Team Happiness</h1>
+       <h3 class="display-6">Team Happiness:</h3>
     </div>
     <div class="col-2">
       <image style="width:100%" src="/static/Login/images/emoji/ExcitedEmoji.jpg" id='team_excited_jpg'>
 	   <center>
 	   <!-- input type="radio" name="project_happy_level" id="id_project_happy_level_0" value="male" />Exited<br> -->
-	   <input type="radio" name="project_happy_level" value="1" required id="id_project_happy_level_1" checked/>Exited<br>
+	   <input type="radio" name="project_happy_level" value="1" required id="id_project_happy_level_1"/>Exited<br>
 	   </center>
     </div>
 	<div class="col-2">
@@ -168,18 +212,20 @@ $(function(){
 	   </center>
     </div>
   </div>
+  {{optObjForm.project_happy_level.errors}}
   <br>
   <hr class="my-4">
+  <h5 class="alert alert-primary">Please select the emoji that tells how happy about your work</h5>
   <br>
   <div class="row">
     <div class="col-2" >
-       <h1 class="display-6">Self Happiness</h1>
+       <h3 class="display-6">Self Happiness:</h3>
     </div>
     <div class="col-2">
       <image style="width:100%" src="/static/Login/images/emoji/ExcitedEmoji.jpg" id='self_excited_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male" />Exited<br> -->
-	   <input type="radio" name="personal_happy_level" value="1" required id="id_personal_happy_level_1" checked/>Exited<br>
+	   <input type="radio" name="personal_happy_level" value="1" required id="id_personal_happy_level_1"/>Exited<br>
 	   </center>
     </div>
 	<div class="col-2">
@@ -212,6 +258,7 @@ $(function(){
     </div>
  
   </div>
+  {{optObjForm.personal_happy_level.errors}}
    <br>
   <hr class="my-4">
 
