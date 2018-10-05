@@ -31,3 +31,5 @@ def welcome(request):
 #     return render_to_response('welcome.html',locals(),context_instance=RequestContext(request))
     return render(request, 'welcome.html')
 
+def postpone(request):
+    print 'execute postpone method!'
