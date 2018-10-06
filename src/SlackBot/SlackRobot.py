@@ -51,7 +51,7 @@ class SlackRobot(object):
         if users and slackAccount and message:
             slackId=users.get(slackAccount)
             if slackId:
-                self.slack_client.api_call("chat.postMessage", channel=slackId, text=message, attachments=attachment, as_user=True, timeout=1)
+                self.slack_client.api_call("chat.postMessage", channel=slackId, text=message, attachments=attachment, as_user=True, timeout=3)
 #                 self.slack_client.api_call("chat.postMessage", channel=userId, text=message, as_user=True, timeout=1)
     
     
@@ -79,7 +79,7 @@ class SlackRobot(object):
              "text": "Postpone submit!", 
              "type": "button", 
              'style' : 'danger',
-             "value": 'delay_submit',
+             "value": value,
             }
             ] 
         
@@ -98,7 +98,7 @@ class SlackRobot(object):
             message=' ' #self.createMessage(firstName, taskId)
             url=self.createSubmitUrl(taskId)
 #             print url
-            attachment=self.createAttachment(submitUrl=url,value=taskId)
+            attachment=self.createAttachment(submitUrl=url,value='%s' % taskId)
             
             notifyCount=taskState.notify_count
             waitTime=get_postpone_time(notifyCount)

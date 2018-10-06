@@ -24,10 +24,10 @@ from Common.CommonTools import *
 import logging
 from django.utils import timezone
 import time
-from SlackBot.SlackRobot import SlackRobot
+from SlackBot import SlackRobot
 
 
         
 if __name__=='__main__':
-    slackRobot=SlackRobot()
+    slackRobot=SlackRobot.SlackRobot()
     slackRobot.happinessNotify()
