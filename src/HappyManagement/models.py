@@ -72,6 +72,8 @@ class TaskState(models.Model):
     slack_account=models.CharField(u'Slack account',max_length=100,null=True,blank=True)
     project=models.ForeignKey(Project,null=True,blank=True)
     task_state=models.CharField(u'Task state level',max_length=50,choices=taskState_choice,null=True,blank=True)
+    next_notify_time=models.DateTimeField(u'Next notify time',null=True,blank=True)
+    notify_count=models.BigIntegerField(u'Notify Count', default=0)
     
     class Meta:
         ordering=[]
