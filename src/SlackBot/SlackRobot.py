@@ -21,6 +21,7 @@ from django.db import transaction
 from slackclient import SlackClient
 from Common.CommonTools import *
 import logging
+from django.utils import timezone
 
 logger = logging.getLogger(__name__)
 
@@ -31,10 +32,11 @@ class SlackRobot(object):
         self.BOT_ID = 'UD6NR8D28'
         SLACK_BOT_TOKEN='xoxb-417145055956-448773285076-BxLeF7ydbEmFbFzQ1u5yCguS'
         self.slack_client = SlackClient(SLACK_BOT_TOKEN)
-        self.host=get_host_ip()
-        self.port=8000 
+        self.host=r'104.210.70.125'  #get_host_ip()
+        self.port=80
+        self.notifyTimes={0:5,1:10,2:15,3:20,4:25,5:30}
         
-    def getUserInformation(self):
+    def getSlackAccountInformation(self):
         '''
         get all users information
         @return: a map, it's key is username and value is user id 
@@ -53,53 +55,73 @@ class SlackRobot(object):
 #                 self.slack_client.api_call("chat.postMessage", channel=userId, text=message, as_user=True, timeout=1)
     
     
-    def createMessage(self,userName='',taskId=''):
-#         message=r'Hello %s, it is time to submit your happy level. Please click following link to submit your happiness. http://%s:8000/HappyManagement/addHappyLevel/?task_id=%s' % (userName,self.host,taskId)
-        message=r'Hi guys, would your like to submit your happiness now?'
-        return message
+    def createSubmitUrl(self,taskId=''):
+        uReturn=r'http://%s/HappyManagement/addHappyLevel/?task_id=%s' % (self.host,taskId)
+#         message=r'Hi guys, would your like to submit your happiness now?'
+        return uReturn
     
-    def createAttachment(self):
+    def createAttachment(self, submitUrl=None):
         attachment=[{ 
         "title": "Hi guys, would your like to submit your happiness now?", 
-        'title_link': 'http://127.0.0.1:8000/',
+        'title_link': submitUrl,
         "text": "Choose a button to click", 
         'callback_id':'delay_submit',
         "actions": [ 
             { 
-             "name": "buttonName", 
+             "name": "Happiness_submit", 
              "text": "Submit happiness now!", 
              "type": "button", 
-             "url": 'http://localhost:8000/',
+             "url": submitUrl,
              'style' : 'primary'
             },
             { 
              "name": "delay_submit", 
-             "text": "Delay submit!", 
+             "text": "Postpone submit!", 
              "type": "button", 
              'style' : 'danger',
              "value": 'delay_submit',
-             
             }
             ] 
         
         }] 
+        print attachment
         return attachment
                 
     def happinessNotify(self):
         taskStates=TaskState.objects.filter(task_state='1')  #get all people who does not submit happy level
-        users=self.getUserInformation()  #get the latest users' information before sending message
+        users=self.getSlackAccountInformation()  #get the latest slack account information before sending message
         for taskState in taskStates:
             slackAccount=taskState.slack_account
             taskId=taskState.id
-            firstName=taskState.user.first_name
+            print taskId
+#             firstName=taskState.user.first_name
             message=' ' #self.createMessage(firstName, taskId)
-            attachment=self.createAttachment()
-            self.sendMessageToSlack(users=users, slackAccount=slackAccount, message=message, attachment=attachment)
+            url=self.createSubmitUrl(taskId)
+            print url
+            attachment=self.createAttachment(submitUrl=url)
+            
+            notifyCount=taskState.notify_count
+            waitTime=self.notifyTimes.get(notifyCount)
+            notifyTime = taskState.next_notify_time
+            if not notifyTime:
+                notifyTime = timezone.now()
+            if notifyTime >= timezone.now():
+                self.sendMessageToSlack(users=users, slackAccount=slackAccount, message=message, attachment=attachment)  #notify
+                nextNotifyTime = calcuteDatetime(notifyTime, waitTime)
+                taskState.notify_count = notifyCount + 1
+                taskState.next_notify_time = nextNotifyTime
+                taskState.save()
+            
         
 
 if __name__=='__main__':
-    slackRobot=SlackRobot()
-    slackRobot.happinessNotify()
+    taskId='2d829ba9-36be-4d9f-9236-e591dee49c15'
+    taskStates=TaskState.objects.filter(id='%s' % taskId)
+    print taskStates[0].id
+    taskState=TaskState.objects.get(id='%s' % taskId)
+    print taskState.id
+#     slackRobot=SlackRobot()
+#     slackRobot.happinessNotify()
     
     
     

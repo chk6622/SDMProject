@@ -7,6 +7,8 @@ Created on Oct 4, 2018
 '''
 
 import socket
+from datetime import datetime
+from datetime import timedelta
 
 SO_BINDTODEVICE=25
 
@@ -33,3 +35,15 @@ def get_free_port(iface=None):
     port = s.getsockname()[1]
     s.close()
     return port
+
+def calcuteDatetime(orginDatetime=datetime.now(),minutes=0):
+    return orginDatetime + timedelta(minutes=minutes)
+    
+
+if __name__=='__main__':
+    time1 = datetime.now()
+    print 'today is %s' % time1.strftime('%Y-%m-%d %H:%M')
+    aDay = timedelta(minutes=1)
+    time2 = time1 + aDay
+    print time2.strftime('%Y-%m-%d %H:%M')
+    print time2>=time1

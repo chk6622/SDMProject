@@ -19,3 +19,10 @@ class CommonToolsTest(TestCase):
         port=get_free_port()
         print port
         self.assertIsNotNone(port, port)
+        
+    def test_calcute_time(self):
+        now=datetime.now()
+        targetTime=calcuteDatetime(now, 5)
+        self.assertGreater(targetTime, now)
+        targetTime=calcuteDatetime(now, -5)
+        self.assertLess(targetTime, now)
