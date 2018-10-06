@@ -50,17 +50,17 @@ def postpone(request):
         parms = json.loads(request.POST.get('payload'))
         actions=parms.get('actions')
         if actions and len(actions)>0:
-            task_id=actions[0].get('value')
+            task_id,postponeTime=actions[0].get('value').split(';')
             taskState=TaskState.objects.get(id=task_id)
             if taskState:
                 notify_count=taskState.notify_count
-                postponeTime=CommonTools.get_postpone_time(notify_count)
-                nextNotifyTime=CommonTools.calcute_datetime(timezone.now(),postponeTime)
+#                 postponeTime=CommonTools.get_postpone_time(notify_count)
+                nextNotifyTime=CommonTools.calcute_datetime(timezone.now(),int(postponeTime))
                 notify_count+=1
                 taskState.next_notify_time=nextNotifyTime
                 taskState.notify_count=notify_count
                 taskState.save()
-                rMessage='Ok, I will notify you in %d minutes.' % postponeTime
+                rMessage='Ok, I will notify you in %s minutes.' % postponeTime
                 mReturn={
                     'text':rMessage,
                     'response_type':'ephemeral',

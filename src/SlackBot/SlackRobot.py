@@ -69,17 +69,31 @@ class SlackRobot(object):
         "actions": [ 
             { 
              "name": "Happiness_submit", 
-             "text": "Submit happiness now!", 
+             "text": "Submit now!", 
              "type": "button", 
              "url": submitUrl,
              'style' : 'primary'
             },
             { 
-             "name": "delay_submit", 
-             "text": "Postpone submit!", 
+             "name": "Postpone_5_m", 
+             "text": "Postpone 5 mintues!", 
              "type": "button", 
              'style' : 'danger',
-             "value": value,
+             "value": '%s;5' % value,
+            },
+            { 
+             "name": "Postpone_10_m", 
+             "text": "Postpone 10 mintues!", 
+             "type": "button", 
+             'style' : 'danger',
+             "value": '%s;10' % value,
+            },
+            { 
+             "name": "Postpone_15_m", 
+             "text": "Postpone 15 mintues!", 
+             "type": "button", 
+             'style' : 'danger',
+             "value": '%s;15' % value,
             }
             ] 
         
@@ -90,6 +104,7 @@ class SlackRobot(object):
     def happinessNotify(self):
         taskStates=TaskState.objects.filter(task_state='1')  #get all people who does not submit happy level
         users=self.getSlackAccountInformation()  #get the latest slack account information before sending message
+        total_notify_number=0
         for taskState in taskStates:
             slackAccount=taskState.slack_account
             taskId=taskState.id
@@ -101,17 +116,19 @@ class SlackRobot(object):
             attachment=self.createAttachment(submitUrl=url,value='%s' % taskId)
             
             notifyCount=taskState.notify_count
-            waitTime=get_postpone_time(notifyCount)
+            waitTime=2 #get_postpone_time(notifyCount)
             notifyTime = taskState.next_notify_time
             now = timezone.now()
             if not notifyTime:
                 notifyTime = now
             if notifyTime <= now:
                 self.sendMessageToSlack(users=users, slackAccount=slackAccount, message=message, attachment=attachment)  #notify
+                total_notify_number += 1
                 nextNotifyTime = calcute_datetime(now, waitTime)
                 taskState.notify_count = notifyCount + 1
                 taskState.next_notify_time = nextNotifyTime
                 taskState.save()
+        print 'Total notify number is %d' % total_notify_number
             
 #     def exectue(self):
 #         slackRobot=SlackRobot()
