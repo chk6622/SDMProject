@@ -36,8 +36,17 @@ def get_free_port(iface=None):
     s.close()
     return port
 
-def calcuteDatetime(orginDatetime=datetime.now(),minutes=0):
+def calcute_datetime(orginDatetime=datetime.now(),minutes=0):
     return orginDatetime + timedelta(minutes=minutes)
+
+notifyTimes={0:5,1:10,2:15,3:20,4:25,5:30}
+
+def get_postpone_time(notify_count=0):
+    pReturn=30
+    pt = notifyTimes.get(notify_count)
+    if pt:
+        pReturn = pt
+    return pReturn
     
 
 if __name__=='__main__':
