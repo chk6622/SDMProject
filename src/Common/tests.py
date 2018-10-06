@@ -22,7 +22,7 @@ class CommonToolsTest(TestCase):
         
     def test_calcute_time(self):
         now=datetime.now()
-        targetTime=calcuteDatetime(now, 5)
+        targetTime=calcute_datetime(now, 5)
         self.assertGreater(targetTime, now)
-        targetTime=calcuteDatetime(now, -5)
+        targetTime=calcute_datetime(now, -5)
         self.assertLess(targetTime, now)
