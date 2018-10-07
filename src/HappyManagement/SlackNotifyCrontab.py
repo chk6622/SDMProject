@@ -9,7 +9,7 @@ Created on Oct 6, 2018
 import os
 import django
 import sys
-from Common.CommonTools import get_host_ip
+# from Common.CommonTools import get_host_ip
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # import SDMProject.settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SDMProject.settings")
@@ -24,12 +24,12 @@ from Common.CommonTools import *
 import logging
 from django.utils import timezone
 import time
-from SlackBot.SlackRobot import SlackRobot
+from SlackBot import SlackRobot
 
 
 
 
         
 if __name__=='__main__':
-    slackRobot=SlackRobot()
+    slackRobot=SlackRobot.SlackRobot()
     slackRobot.happinessNotify()
