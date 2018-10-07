@@ -9,7 +9,7 @@ Created on Oct 6, 2018
 import os
 import django
 import sys
-from Common.CommonTools import get_host_ip
+# from Common.CommonTools import get_host_ip
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # import SDMProject.settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SDMProject.settings")
