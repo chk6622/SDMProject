@@ -1,8 +1,8 @@
 <html>
 <head>
 <title>Happiness Level Submission</title>
-<link rel="stylesheet" type="text/css" href="/static/Login/vendor/bootstrap/css/bootstrap.min.css">
-<script type='text/javascript' src='/static/scripts/jquery-1.7.2.js'></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}Login/vendor/bootstrap/css/bootstrap.min.css">
+<script type='text/javascript' src='{{STATIC_URL}}scripts/jquery-1.7.2.js'></script>
 <style type="text/css">
 <!--
 body {
@@ -177,35 +177,35 @@ $(function(){
        <h3 class="display-6">Team Happiness:</h3>
     </div>
     <div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/ExcitedEmoji.jpg" id='team_excited_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/ExcitedEmoji.jpg" id='team_excited_jpg'>
 	   <center>
 	   <!-- input type="radio" name="project_happy_level" id="id_project_happy_level_0" value="male" />Exited<br> -->
 	   <input type="radio" name="project_happy_level" value="1" required id="id_project_happy_level_1"/>Exited<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/happy.png" id='team_happy_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/happy.png" id='team_happy_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/> Happy<br> -->
 	   <input type="radio" name="project_happy_level" value="2" required id="id_project_happy_level_2" />Happy<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/normal.jpg" id='team_normal_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/normal.jpg" id='team_normal_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/> Normal<br> -->
 	   <input type="radio" name="project_happy_level" value="3" required id="id_project_happy_level_3" />Normal<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/Unhappy.png" id='team_unhappy_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/Unhappy.png" id='team_unhappy_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/> Unhappy<br> -->
 	   <input type="radio" name="project_happy_level" value="4" required id="id_project_happy_level_4" />Unhappy<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/angry.jpg" id='team_angry_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/angry.jpg" id='team_angry_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/>Angry<br> -->
 	   <input type="radio" name="project_happy_level" value="5" required id="id_project_happy_level_5" />Angry<br>
@@ -222,35 +222,35 @@ $(function(){
        <h3 class="display-6">Self Happiness:</h3>
     </div>
     <div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/ExcitedEmoji.jpg" id='self_excited_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/ExcitedEmoji.jpg" id='self_excited_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male" />Exited<br> -->
 	   <input type="radio" name="personal_happy_level" value="1" required id="id_personal_happy_level_1"/>Exited<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/happy.png" id='self_happy_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/happy.png" id='self_happy_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male"/> Happy<br> -->
 	   <input type="radio" name="personal_happy_level" value="2" required id="id_personal_happy_level_2" />Happy<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/normal.jpg" id='self_normal_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/normal.jpg" id='self_normal_jpg'>
 	   <center>
 	   <!--  input type="radio" name="teamhappiness" value="male"/> Normal<br-->
 	   <input type="radio" name="personal_happy_level" value="3" required id="id_personal_happy_level_3" />Normal<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/Unhappy.png" id='self_unhappy_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/Unhappy.png" id='self_unhappy_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male"/> Unhappy<br-->
 	   <input type="radio" name="personal_happy_level" value="4" required id="id_personal_happy_level_4" />Unhappy<br>
 	   </center>
     </div>
 	<div class="col-2">
-      <image style="width:100%" src="/static/Login/images/emoji/angry.jpg" id='self_angry_jpg'>
+      <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/angry.jpg" id='self_angry_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male"/>Angry<br> -->
 	   <input type="radio" name="personal_happy_level" value="5" required id="id_personal_happy_level_5" />Angry<br>
