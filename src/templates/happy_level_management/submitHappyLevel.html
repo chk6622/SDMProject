@@ -28,15 +28,17 @@ body {
 
 .mouseHover {
 	cursor: pointer;
-	font-size: 30px; 
+	//font-size: 12px; 
 	font-weight: bold;
 	color: red;
-	border:1px solid #000
+	border:2px solid #000
 }
 .selectRadio {
 	cursor: pointer;
-	font-size: 25px;
+	//font-size: 12px;
 	color: red;
+	font-weight: bold;
+	border:2px solid #000
 }
 -->
 </style>
@@ -180,7 +182,7 @@ $(function(){
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/ExcitedEmoji.jpg" id='team_excited_jpg'>
 	   <center>
 	   <!-- input type="radio" name="project_happy_level" id="id_project_happy_level_0" value="male" />Exited<br> -->
-	   <input type="radio" name="project_happy_level" value="1" required id="id_project_happy_level_1"/>Exited<br>
+	   <input type="radio" name="project_happy_level" value="1" required id="id_project_happy_level_1"/>Very happy<br>
 	   </center>
     </div>
 	<div class="col-2">
@@ -194,21 +196,21 @@ $(function(){
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/normal.jpg" id='team_normal_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/> Normal<br> -->
-	   <input type="radio" name="project_happy_level" value="3" required id="id_project_happy_level_3" />Normal<br>
+	   <input type="radio" name="project_happy_level" value="3" required id="id_project_happy_level_3" />Neutral<br>
 	   </center>
     </div>
 	<div class="col-2">
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/Unhappy.png" id='team_unhappy_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/> Unhappy<br> -->
-	   <input type="radio" name="project_happy_level" value="4" required id="id_project_happy_level_4" />Unhappy<br>
+	   <input type="radio" name="project_happy_level" value="4" required id="id_project_happy_level_4" />Not happy<br>
 	   </center>
     </div>
 	<div class="col-2">
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/angry.jpg" id='team_angry_jpg'>
 	   <center>
 	   <!-- input type="radio" name="selfhappiness" value="male"/>Angry<br> -->
-	   <input type="radio" name="project_happy_level" value="5" required id="id_project_happy_level_5" />Angry<br>
+	   <input type="radio" name="project_happy_level" value="5" required id="id_project_happy_level_5" />Not at all happy<br>
 	   </center>
     </div>
   </div>
@@ -225,7 +227,7 @@ $(function(){
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/ExcitedEmoji.jpg" id='self_excited_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male" />Exited<br> -->
-	   <input type="radio" name="personal_happy_level" value="1" required id="id_personal_happy_level_1"/>Exited<br>
+	   <input type="radio" name="personal_happy_level" value="1" required id="id_personal_happy_level_1"/>Very happy<br>
 	   </center>
     </div>
 	<div class="col-2">
@@ -239,21 +241,21 @@ $(function(){
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/normal.jpg" id='self_normal_jpg'>
 	   <center>
 	   <!--  input type="radio" name="teamhappiness" value="male"/> Normal<br-->
-	   <input type="radio" name="personal_happy_level" value="3" required id="id_personal_happy_level_3" />Normal<br>
+	   <input type="radio" name="personal_happy_level" value="3" required id="id_personal_happy_level_3" />Neutral<br>
 	   </center>
     </div>
 	<div class="col-2">
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/Unhappy.png" id='self_unhappy_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male"/> Unhappy<br-->
-	   <input type="radio" name="personal_happy_level" value="4" required id="id_personal_happy_level_4" />Unhappy<br>
+	   <input type="radio" name="personal_happy_level" value="4" required id="id_personal_happy_level_4" />Not happy<br>
 	   </center>
     </div>
 	<div class="col-2">
       <image style="width:100%" src="{{STATIC_URL}}Login/images/emoji/angry.jpg" id='self_angry_jpg'>
 	   <center>
 	   <!-- input type="radio" name="teamhappiness" value="male"/>Angry<br> -->
-	   <input type="radio" name="personal_happy_level" value="5" required id="id_personal_happy_level_5" />Angry<br>
+	   <input type="radio" name="personal_happy_level" value="5" required id="id_personal_happy_level_5" />Not at all happy<br>
 	   </center>
     </div>
  
