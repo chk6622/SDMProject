@@ -60,40 +60,40 @@ class SlackRobot(object):
 #         message=r'Hi guys, would your like to submit your happiness now?'
         return uReturn
     
-    def createAttachment(self, submitUrl=None, value= None):
+    def createAttachment(self, submitUrl=None, value= None, userName= None):
         attachment=[{ 
-        "title": "Hi guys, would your like to submit your happiness now?", 
+        "title": "Hi %s, would your like to submit your happiness now?" % userName, 
         'title_link': submitUrl,
-        "text": "Choose a button to click", 
+        "text": "You can click the green button to submit your happiness, or you can click red buttons to postpone your submitting time.", 
         'callback_id':'delay_submit',
         "actions": [ 
             { 
              "name": "Happiness_submit", 
-             "text": "Submit now!", 
+             "text": "Submit", 
              "type": "button", 
              "url": submitUrl,
              'style' : 'primary'
             },
             { 
              "name": "Postpone_5_m", 
-             "text": "Postpone 5 mintues!", 
+             "text": "5 minutes", 
              "type": "button", 
              'style' : 'danger',
              "value": '%s;5' % value,
             },
             { 
              "name": "Postpone_10_m", 
-             "text": "Postpone 10 mintues!", 
+             "text": "10 minutes", 
              "type": "button", 
              'style' : 'danger',
              "value": '%s;10' % value,
             },
             { 
-             "name": "Postpone_15_m", 
-             "text": "Postpone 15 mintues!", 
+             "name": "Postpone_20_m", 
+             "text": "20 minutes", 
              "type": "button", 
              'style' : 'danger',
-             "value": '%s;15' % value,
+             "value": '%s;20' % value,
             }
             ] 
         
@@ -113,7 +113,7 @@ class SlackRobot(object):
             message=' ' #self.createMessage(firstName, taskId)
             url=self.createSubmitUrl(taskId)
 #             print url
-            attachment=self.createAttachment(submitUrl=url,value='%s' % taskId)
+            attachment=self.createAttachment(submitUrl=url,value='%s' % taskId, userName=taskState.user.first_name)
             
             notifyCount=taskState.notify_count
             waitTime=2 #get_postpone_time(notifyCount)
