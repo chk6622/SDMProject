@@ -95,8 +95,8 @@ class TaskStateForm(forms.ModelForm):
 
 
 class HappyLevel(BaseModels.BaseModel):    
-    personal_happy_level=models.CharField(u'Personal happy level',max_length=50,choices=happyLevel_choice,null=True,blank=False)
-    project_happy_level=models.CharField(u'Project happy level',max_length=50,choices=happyLevel_choice,null=True,blank=False)
+    personal_happy_level=models.CharField(u'Personal happiness',max_length=50,choices=happyLevel_choice,null=True,blank=False)
+    project_happy_level=models.CharField(u'Project happiness',max_length=50,choices=happyLevel_choice,null=True,blank=False)
     project=models.ForeignKey(Project,null=True,blank=True)
     create_user=models.ForeignKey(User,null=True,blank=True)
     # update_user should be User Foreign Key, but I have to set related_name, because I already have one User FK in model
@@ -115,7 +115,7 @@ class HappyLevel(BaseModels.BaseModel):
     def getFormatObj(self):
         rList=[]
         attrNames=('project_id','create_time','personal_happy_level','project_happy_level')
-        attrlabels=('Project','Create time','Personal happy level','Project happy level')
+        attrlabels=('Project','Create time','Personal happiness','Project happiness')
         for attr in attrNames:                
             tmpAttr=self.__dict__.get(attr)
             if tmpAttr:
@@ -152,11 +152,11 @@ class HappyLevelForm(forms.ModelForm):
     create_user_qry=forms.CharField(label=u'Create user',help_text=u'',required=False)
     project_qry=forms.ChoiceField(label=u'Project',help_text=u'',required=False,choices=[],widget=forms.Select)
     
-    personal_happy_level_qry=forms.ChoiceField(label=u'Personal happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
-    project_happy_level_qry=forms.ChoiceField(label=u'Project happy level',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    personal_happy_level_qry=forms.ChoiceField(label=u'Personal happiness',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
+    project_happy_level_qry=forms.ChoiceField(label=u'Project happiness',help_text=u'',required=False,choices=getChoice(happyLevel_choice,True),widget=forms.Select)
     
-    personal_happy_level=forms.ChoiceField(label=u'Personal happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
-    project_happy_level=forms.ChoiceField(label=u'Project happy level',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
+    personal_happy_level=forms.ChoiceField(label=u'Personal happiness',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
+    project_happy_level=forms.ChoiceField(label=u'Project happiness',help_text=u'',required=True,choices=getChoice(happyLevel_choice,True),widget=forms.RadioSelect)
     
     
     class Meta:
