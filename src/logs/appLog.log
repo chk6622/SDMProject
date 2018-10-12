@@ -22,7 +22,6 @@
 2018-09-23 22:34:56,167;INFO;basehttp.log_message;Line:124;Message:"GET /html/welcome.html HTTP/1.1" 200 278
 2018-09-23 22:34:56,177;INFO;basehttp.log_message;Line:124;Message:"GET /html/left.html HTTP/1.1" 200 10246
 2018-09-23 22:34:56,191;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_07.gif
-2018-09-23 22:34:56,193;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_07.gif HTTP/1.1" 404 258
 2018-09-23 22:34:56,256;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_11.gif
 2018-09-23 22:34:56,257;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_11.gif HTTP/1.1" 404 258
 2018-09-23 22:34:56,259;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_31.gif
