@@ -62,9 +62,9 @@ class SlackRobot(object):
     
     def createAttachment(self, submitUrl=None, value= None, userName= None):
         attachment=[{ 
-        "title": "Hi %s, would your like to submit your happiness now?" % userName, 
+        "title": "Hi %s, just remind it is your time to submit your happiness information." % userName, 
         'title_link': submitUrl,
-        "text": "You can click the green button to submit your happiness, or you can click red buttons to postpone your submitting time.", 
+        "text": "You can click the red button to submit your happiness, or you can click black buttons to postpone your submitting time.", 
         'callback_id':'delay_submit',
         "actions": [ 
             { 
@@ -72,30 +72,30 @@ class SlackRobot(object):
              "text": "Submit", 
              "type": "button", 
              "url": submitUrl,
-             'style' : 'primary'
+             'style' : 'danger'
             },
             { 
              "name": "Postpone_5_m", 
              "text": "5 minutes", 
              "type": "button", 
-             'style' : 'danger',
+#              'style' : 'primary',
              "value": '%s;5' % value,
             },
             { 
              "name": "Postpone_10_m", 
              "text": "10 minutes", 
              "type": "button", 
-             'style' : 'danger',
+#              'style' : 'primary',
              "value": '%s;10' % value,
             },
             { 
              "name": "Postpone_20_m", 
              "text": "20 minutes", 
              "type": "button", 
-             'style' : 'danger',
+#              'style' : 'primary',
              "value": '%s;20' % value,
             }
-            ] 
+            ]
         
         }] 
 #         print attachment
