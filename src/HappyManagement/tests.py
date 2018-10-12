@@ -155,5 +155,5 @@ class HappyManagementTest(TestCase):
         ts.delete()
         taskStates=TaskState.objects.filter(id=ts_id)
         self.assertIsNotNone(taskStates)
-        self.assertEquals(len(taskStates), 0)
+        self.assertEquals(len(taskStates), 1)
     
