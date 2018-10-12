@@ -1,9 +1,17 @@
+﻿#!/usr/bin/env python
+#coding: utf-8
+'''
+Created on Oct 12, 2018
+
+@author: Chunlu Hu
+'''
+
 #!/usr/bin/env python
 #coding: utf-8
 '''
-Created on Oct 4, 2018
+Created on Oct 12, 2018
 
-@author: xingtong
+@author: Chunlu Hu
 '''
 
 import socket
@@ -27,7 +35,7 @@ def get_host_ip():
     return ip
 
 def get_free_port(iface=None):
-    #  iface参数指Linux的网卡接口，如(eth0,wlan0)，这个参数只支持Linux并且需要root权限
+    #  iface parameters is the interface of Linux network card address，for example (eth0,wlan0)，This parameter just supports Linux, and needs the privilege of root
     s = socket.socket()
     if iface:
         s.setsockopt(socket.SOL_SOCKET, SO_BINDTODEVICE, bytes(iface,'utf8'))
