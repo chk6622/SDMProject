@@ -19,52 +19,6 @@
 2018-09-23 22:34:56,099;WARNING;basehttp.log_message;Line:124;Message:"GET /static/scripts/DepWorkSiteCommon.js HTTP/1.1" 404 258
 2018-09-23 22:34:56,153;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_55.gif
 2018-09-23 22:34:56,154;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_55.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,167;INFO;basehttp.log_message;Line:124;Message:"GET /html/welcome.html HTTP/1.1" 200 278
-2018-09-23 22:34:56,177;INFO;basehttp.log_message;Line:124;Message:"GET /html/left.html HTTP/1.1" 200 10246
-2018-09-23 22:34:56,191;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_07.gif
-2018-09-23 22:34:56,256;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_11.gif
-2018-09-23 22:34:56,257;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_11.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,259;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_31.gif
-2018-09-23 22:34:56,259;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_31.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,299;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_37.gif
-2018-09-23 22:34:56,299;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_37.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,305;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_36.gif
-2018-09-23 22:34:56,306;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_36.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,355;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_05.gif
-2018-09-23 22:34:56,358;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_05.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,371;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_04.gif
-2018-09-23 22:34:56,371;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_04.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,378;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_09.gif
-2018-09-23 22:34:56,378;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_09.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,388;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_03.gif
-2018-09-23 22:34:56,388;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_03.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,398;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_30.gif
-2018-09-23 22:34:56,398;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_30.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,427;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_32.gif
-2018-09-23 22:34:56,427;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_32.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,434;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_29.gif
-2018-09-23 22:34:56,434;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_29.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,440;WARNING;base.get_response;Line:152;Message:Not Found: /static/scripts/jquery-1.7.2.js
-2018-09-23 22:34:56,440;WARNING;basehttp.log_message;Line:124;Message:"GET /static/scripts/jquery-1.7.2.js HTTP/1.1" 404 258
-2018-09-23 22:34:56,476;WARNING;base.get_response;Line:152;Message:Not Found: /static/scripts/DepWorkSiteCommon.js
-2018-09-23 22:34:56,476;WARNING;basehttp.log_message;Line:124;Message:"GET /static/scripts/DepWorkSiteCommon.js HTTP/1.1" 404 258
-2018-09-23 22:34:56,486;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/left.gif
-2018-09-23 22:34:56,486;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/left.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,497;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_52.gif
-2018-09-23 22:34:56,499;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_52.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,552;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_58.gif
-2018-09-23 22:34:56,553;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_58.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,556;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_51.gif
-2018-09-23 22:34:56,558;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_47.gif
-2018-09-23 22:34:56,558;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_51.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,558;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_47.gif HTTP/1.1" 404 258
-2018-09-23 22:34:56,562;WARNING;base.get_response;Line:152;Message:Not Found: /static/images/main_40.gif
-2018-09-23 22:34:56,563;WARNING;basehttp.log_message;Line:124;Message:"GET /static/images/main_40.gif HTTP/1.1" 404 258
-2018-09-23 22:36:30,839;DEBUG;base._resolve_lookup;Line:925;Message:Exception while resolving variable 'is_popup' in template 'admin/index.html'.
-Traceback (most recent call last):
-  File "D:\Python27\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
-    (bit, current))  # missing attribute
-VariableDoesNotExist: Failed lookup for key [is_popup] in u"[{'False': False, 'None': None, 'True': True}, {u'csrf_token': <SimpleLazyObject: <function _get_val at 0x000000000E51FF28>>, 'user': <SimpleLazyObject: <User: user1>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x000000000E622D30>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'WARNING': 30, 'SUCCESS': 25, 'ERROR': 40}, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x000000000E522BA8>, u'request': <WSGIRequest: GET '/admin/'>, u'STATIC_URL': '/static/'}, {}, {'site_header': 'Team Happiness Research System', 'available_apps': [{'app_url': u'/admin/auth/', 'models': [{'perms': {u'add': False, u'change': True, u'delete': False}, 'admin_url': u'/admin/auth/user/', 'object_name': 'User', 'name': u'Users'}], 'has_module_perms': True, 'name': u'Authentication and Authorization', 'app_label': 'auth'}], 'site_title': u'Django site admin', 'title': u'Site administration', 'has_permission': True, 'app_list': [{'app_url': u'/admin/auth/', 'models': [{'perms': {u'add': False, u'change': True, u'delete': False}, 'admin_url': u'/admin/auth/user/', 'object_name': 'User', 'name': u'Users'}], 'has_module_perms': True, 'name': u'Authentication and Authorization', 'app_label': 'auth'}], u'LANGUAGE_CODE': 'en-nz', u'LANGUAGE_BIDI': False, 'site_url': '/'}]"
 2018-09-23 22:36:30,841;DEBUG;base._resolve_lookup;Line:925;Message:Exception while resolving variable 'is_popup' in template 'admin/index.html'.
 Traceback (most recent call last):
   File "D:\Python27\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
