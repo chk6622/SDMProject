@@ -191,7 +191,7 @@ def validTaskState(request,task_id=None):
     validate happy task state
     @param request:
     @param task_id:
-    @return: if user can submit happy level Ture or False,  forward url
+    @return: if user can submit happiness Ture or False,  forward url
     '''
     bReturn=False
     taskState=None
@@ -206,10 +206,10 @@ def validTaskState(request,task_id=None):
                 messages.info(request,'Url is invalidation!')
                 templateDir=errorUrl
             elif taskState.task_state==taskState_choice[1][0]:  # task state is done
-                messages.info(request,'The happy level has been submitted. You cannot submit it anymore!')
+                messages.info(request,'The happiness has been submitted. You cannot submit it anymore!')
                 templateDir=errorUrl
             elif taskState.task_state==taskState_choice[2][0]:  #task state is timeout
-                messages.info(request,'The happy level submit task has timed out. You cannot submit it now!')
+                messages.info(request,'The happiness submit task has timed out. You cannot submit it now!')
                 templateDir=errorUrl
             else:
                 bReturn=True
@@ -231,7 +231,7 @@ def addHappyLevel(request):
     return render(request, templateDir, locals())
 
 def submitHappyLevel(request):
-    logger.debug("'submitHappyLevel' execute method")
+    logger.debug("'submitHappinessLevel' execute method")
     returnTemplate=None
     optObj=None
     uploadFileList=None
@@ -241,7 +241,7 @@ def submitHappyLevel(request):
         flag, returnTemplate,taskState=validTaskState(request,task_id)
         if flag:
             optObjForm=FormKlass(request.POST)
-            returnTemplate=submitSuccessUrl
+            returnTemplate=submitUrl
             if optObjForm.is_valid():
                 try:
                     with transaction.atomic():
@@ -251,10 +251,14 @@ def submitHappyLevel(request):
                         optObj=optObjForm.save()
                         taskState.task_state=taskState_choice[1][0]
                         taskState.save()
+                        returnTemplate=submitSuccessUrl
 #                         messages.info(request,'Congratulations! The happy level has been submitted success! Thank you for your support.')
                 except Exception,e:
                     logger.exception(e)
-                    messages.error(request,'Happy level submit fail!')
+                    messages.error(request,'Happiness submit fail!')
+#             else:
+#                 messages.error(request,'Team Happiness and Self Happiness are required field')
+#                 returnTemplate=submitUrl
     else:
         returnTemplate=errorUrl
     return render(request, returnTemplate, locals())

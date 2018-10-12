@@ -4,7 +4,7 @@
 	<td width="98%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF" colspan='6'>
 		<div align="left">
-			&nbsp;&nbsp;<span class="STYLE3">Happy level query</span>
+			&nbsp;&nbsp;<span class="STYLE3">Happiness query</span>
 		</div>
 	</td>
 </tr>
@@ -69,7 +69,7 @@
 </tr>
 {%endblock%} 
 {%block list_name%}
- 	user information table
+ 	Happiness list
 {% endblock%} 
 {%block add_button%} {%endblock%} 
 {%block export_button%} 
@@ -100,14 +100,14 @@
 		</div></td>
 	<td width="20%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Personal happy level</span>
+			<span class="STYLE1">Personal happiness</span>
 		</div></td>
 	<td width="20%" height="22" background="/static/tab/images/bg.gif"
 		bgcolor="#FFFFFF"><div align="center">
-			<span class="STYLE1">Project happy level</span>
+			<span class="STYLE1">Project happiness</span>
 		</div></td>
-	<td width="10%" height="22" background="/static/tab/images/bg.gif"
-		bgcolor="#FFFFFF" class="STYLE1"><div align="center">Process</div></td>
+	<!-- td width="10%" height="22" background="/static/tab/images/bg.gif"
+		bgcolor="#FFFFFF" class="STYLE1"><div align="center">Process</div></td> -->
 </tr>
 {%endblock%} 
 {%block table_body%} 
@@ -126,7 +126,7 @@
 			<td height="20" bgcolor="#FFFFFF"><div align="center">
 					<span class="STYLE1">{{optObj.get_project_happy_level_display}}</span>
 				</div></td>
-			<td height="10" bgcolor="#FFFFFF">
+			<!-- td height="10" bgcolor="#FFFFFF">
 				<div align="center">
 					<span class="STYLE4"> 
 					{%if perms.HappyManagement.change_happylevel%} 
@@ -135,7 +135,7 @@
 						</span>
 					{%endif%}
 				</div>
-			</td>
+			</td> -->
 		</tr>
 	{%endfor%} 
 {%endif%} 

@@ -49,4 +49,6 @@ urlpatterns = [
     url(r'^accounts/profile/$',loginSuccess),  #login success forward page
     url(r'^logout/',logout,{'next_page':'/'}),  #next_page：logout success forward page
     url(r'^$', login,{'template_name':'login.html'}),   #template_name:login page
+    
+    url(r'^postpone',HtmlViews.postpone),
 ]

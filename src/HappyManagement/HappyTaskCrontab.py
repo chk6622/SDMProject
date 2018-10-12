@@ -39,6 +39,7 @@ def happyTaskCrontab():
                 ts.task_state=taskState_choice[0][0]
                 ts.user=user
                 ts.email=user.email
+                ts.slack_account=user.slack_account
                 ts.project=user.project
                 ts.save()
     except Exception, err:
