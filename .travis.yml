@@ -3,7 +3,7 @@ env:
 language: python
 branches:
   only:
- - master
+  - master
 services:
   - mysql
 python:
