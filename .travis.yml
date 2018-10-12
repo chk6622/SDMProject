@@ -4,6 +4,7 @@ language: python
 branches:
   only:
   - master
+  - feature
 services:
   - mysql
 python:
